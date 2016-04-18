@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Camera;
 import android.graphics.Color;
 
 import android.hardware.Sensor;
@@ -29,6 +30,7 @@ import com.google.android.gms.location.FusedLocationProviderApi;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -46,34 +48,36 @@ public class MapsActivity extends FragmentActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener,
-        GoogleMap.OnInfoWindowClickListener{
+        GoogleMap.OnInfoWindowClickListener {
+
+    //commented asof 16th april 2016 is.an.lognod
+    /*
     private double currentLatitude;
     private double currentLongitude;
 
-    Sensor mLight;
-    SensorManager mSensorManager;
+    */
 
 
     public static final String TAG = MapsActivity.class.getSimpleName();
 
-    private FusedLocationProviderApi fusedLocationProviderApi = LocationServices.FusedLocationApi;
+    //private FusedLocationProviderApi fusedLocationProviderApi = LocationServices.FusedLocationApi;
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient; //Provide entry point to google play service
     private LocationRequest mLocationRequest;
     Location location;
-    double [] lat = new double [35];
-    double [] lon = new double [35];
+    double[] lat = new double[35];
+    double[] lon = new double[35];
 
     LatLng libpark;
     LatLng admin;
-    LatLng library ;//3
-    LatLng cvraman ;//4
+    LatLng library;//3
+    LatLng cvraman;//4
     LatLng khetan;//5 khetan park saraswoti temple
     LatLng schoolosBlock;//6
     LatLng biotechBlock;//7
-    LatLng mechanicalBlock ;//8
+    LatLng mechanicalBlock;//8
     LatLng newcomp;//9 computer engineering block
     LatLng lechall;//10 Management block
     LatLng civilBlock;//11
@@ -100,11 +104,12 @@ public class MapsActivity extends FragmentActivity implements
     LatLng kufsq;//32 family staff quater
     LatLng kukughiii; //aa //33
     LatLng chemandmath;//34 aquatic ecology Center
-    public void fetching()
-    {
+
+
+    public void fetching() {
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
-        for(int i=1;i<=34;i++) {
+        for (int i = 1; i <= 34; i++) {
             lat[i] = databaseAccess.dataTodouble(i, 3);
             lon[i] = databaseAccess.dataTodouble(i, 4);
         }
@@ -151,10 +156,11 @@ public class MapsActivity extends FragmentActivity implements
     }
 
 
-
-String[] name;
+    String[] name;
     String[] nameScrolling;
 
+    float initialZoom = 17.3f;
+    boolean mRequestingLocation = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,8 +182,8 @@ String[] name;
         //Create the LocationRequest object
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval( 1000)
-                        //10 Seconds in millisecond
+                .setInterval(1000)
+                //10 Seconds in millisecond
                 .setFastestInterval(10 * 1000);
 
 
@@ -186,7 +192,47 @@ String[] name;
         Bundle b = getIntent().getExtras();
         name = b.getStringArray("data");
         nameScrolling = name;
+        /*
+        changes the camera level to the previous zoom level
+        newly added!!
+        16th april 2016
+        is.an.lognod
+        Note: conditon removed form on location changed method and implemented here
+        */
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        //this displays the location of the user
+        mMap.setMyLocationEnabled(true);
+        mMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+            @Override
+            public void onCameraChange(CameraPosition cameraPosition) {
+                /*Location mylocation = mMap.getMyLocation();
+                LatLng myLatLng = new LatLng(mylocation.getLatitude(), mylocation.getLongitude());
+                CameraPosition myPosition = new CameraPosition.Builder()
+                        .target(myLatLng).zoom(17).bearing(mylocation.getBearing()).build();
+                mMap.animateCamera(
+                        CameraUpdateFactory.newCameraPosition(myPosition));*/
 
+                //this conditon is removed in the onLocaitonChanged Method
+                if(cameraPosition.zoom<16.0f){
+
+                   mMap.animateCamera(CameraUpdateFactory.zoomTo(initialZoom), 2000, null);
+                   mMap.moveCamera(CameraUpdateFactory
+                       .newLatLngZoom(new LatLng(27.6186480, 85.5375810), initialZoom));
+
+                }
+
+
+            }
+        });
 
 
 
@@ -209,8 +255,13 @@ String[] name;
     @Override
     protected void onResume() {
         super.onResume();
-        location = null;
+        //location = null;
+        //this eliminates the problem of not requesting the location after resume
         setUpMapIfNeeded();
+        if(!mRequestingLocation){
+            handleNewLocation(location);
+        }
+
         mGoogleApiClient.connect();
 
 
@@ -225,7 +276,8 @@ String[] name;
             LocationServices.FusedLocationApi.
                     removeLocationUpdates(mGoogleApiClient, this);
             mGoogleApiClient.disconnect();
-            location = null;
+            mRequestingLocation=false;
+           // location = null;
         }
 
 
@@ -258,51 +310,50 @@ String[] name;
 
         mMap.moveCamera(CameraUpdateFactory
                 .newLatLngZoom(new LatLng(27.6186480, 85.5375810), (float) 16.9));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo((float) 16.3), 2000, null);
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(initialZoom), 2000, null);
 
 
     }
 
     //HashMap <String, Integer> mMarkers = new HashMap<String, Integer>();
     Marker marker;
-    private int counter = 0;
+    private int counter = 1;
     private int c = 0;
 
     private void handleNewLocation(Location location) {
+
         Bundle m = getIntent().getExtras();
         String[] name = m.getStringArray("data");
         getNumbers(name);
+        //yo part bharkhar change garaeko
 
-        CameraPosition.Builder position = CameraPosition.builder()
+        /*CameraPosition.Builder position = CameraPosition.builder()
                 .bearing(location.getBearing())
                 .zoom(mMap.getCameraPosition().zoom)
-                .tilt(mMap.getCameraPosition().tilt);
+                .tilt(mMap.getCameraPosition().tilt);*/
 
         double currentLatitude = location.getLatitude();
         double currentLongitude = location.getLongitude();
         LatLng latlng = new LatLng(currentLatitude, currentLongitude);
 
-        if(mMap.getCameraPosition().zoom < 16.3)
-        {mMap.animateCamera(CameraUpdateFactory.zoomTo((float) 16.3), 2000, null);
-            mMap.moveCamera(CameraUpdateFactory
-                    .newLatLngZoom(new LatLng(27.6186480, 85.5375810), (float) 16.3));
-        }
+
         if (counter == 0) {
             mMap.clear();
-            MarkerOptions options = new MarkerOptions()
+            /*MarkerOptions options = new MarkerOptions()
                     .position(latlng)
                     .icon(BitmapDescriptorFactory
                             .fromResource(R.drawable.location));
-            marker = mMap.addMarker(options);
+            marker = mMap.addMarker(options);*/
             counter++;
 
             //
 
-        } else {
-
-            Toast.makeText(this, String.valueOf(location.getBearing()), Toast.LENGTH_SHORT).show();
-            marker.setPosition(latlng);
         }
+        /*else {
+            //commented by is.an.lognod
+            //Toast.makeText(this, String.valueOf(location.getBearing()), Toast.LENGTH_SHORT).show();
+           // marker.setPosition(latlng);
+        }*/
 
 
         // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(27.6186480, 85.5375810), (float) 16.3));
@@ -325,7 +376,7 @@ String[] name;
         //       distanceTo(location_current), Toast.LENGTH_SHORT).show();
 
         if (location_kubh.distanceTo(location_current) <= 43) {
-            Marker kubh = mMap.addMarker(new MarkerOptions()
+            mMap.addMarker(new MarkerOptions()
                     .position(kukubh)
                     .title("Kathmandu University Boys Hostel")
                     .snippet("Hostel"));
@@ -345,7 +396,7 @@ String[] name;
         location_socialhall.setLongitude(85.5364949);
 
         if (location_socialhall.distanceTo(location_current) <= 32) {
-            Marker social_hall = mMap.addMarker(new MarkerOptions()
+            mMap.addMarker(new MarkerOptions()
                     .position(socialhall)
                     .title("Social Hall")
                     .snippet("Indoor Games and TV room"));
@@ -686,7 +737,7 @@ String[] name;
         location_footballg.setLongitude(85.5373893);
 
         if (location_footballg.distanceTo(location_current) <= 55) {
-            Marker football_ground = mMap.addMarker(new MarkerOptions()
+            mMap.addMarker(new MarkerOptions()
                     .position(footballg)
                     .title("KU Football Ground ")
                     .snippet("Football and Games"));
@@ -702,7 +753,7 @@ String[] name;
         location_ttca.setLongitude(85.5377913);
 
         if (location_ttca.distanceTo(location_current) <= 44) {
-            Marker mttca = mMap.addMarker(new MarkerOptions()
+            mMap.addMarker(new MarkerOptions()
                     .position(ttca)
                     .title("Technical Training Center (A)")
                     .snippet("TTC (a)"));
@@ -718,7 +769,7 @@ String[] name;
         location_ttcb.setLongitude(85.537474);
 
         if (location_ttcb.distanceTo(location_current) <= 66) {
-            Marker mttcb = mMap.addMarker(new MarkerOptions()
+           mMap.addMarker(new MarkerOptions()
                     .position(ttcb)
                     .title("Technical Training Center (B)")
                     .snippet("TTC (b)"));
@@ -734,7 +785,7 @@ String[] name;
         location_ttl.setLongitude(85.5396222);
 
         if (location_ttl.distanceTo(location_current) <= 55) {
-            Marker mttl = mMap.addMarker(new MarkerOptions()
+           mMap.addMarker(new MarkerOptions()
                     .position(ttl)
                     .title("Turbine Testing Lab")
                     .snippet("TTL"));
@@ -750,7 +801,7 @@ String[] name;
         location_mainpark.setLongitude(85.5380343);
 
         if (location_mainpark.distanceTo(location_current) <= 39) {
-            Marker mpark = mMap.addMarker(new MarkerOptions()
+            mMap.addMarker(new MarkerOptions()
                     .position(mainpark)
                     .title("Main Entrance Parking")
                     .snippet("Parking"));
@@ -766,7 +817,7 @@ String[] name;
         location_swim.setLongitude(85.5367187);
 
         if (location_swim.distanceTo(location_current) <= 68) {
-            Marker kuswim = mMap.addMarker(new MarkerOptions()
+            mMap.addMarker(new MarkerOptions()
                     .position(swim)
                     .title("Swimming Pool")
                     .snippet("swim"));
@@ -782,7 +833,7 @@ String[] name;
         location_volleyc.setLongitude(85.5370034);
 
         if (location_volleyc.distanceTo(location_current) <= 63) {
-            Marker volley = mMap.addMarker(new MarkerOptions()
+           mMap.addMarker(new MarkerOptions()
                     .position(volleyballc)
                     .title("Volleyball Court")
                     .snippet("Game"));
@@ -799,7 +850,7 @@ String[] name;
         location_kucafe.setLongitude(85.5384113);
 
         if (location_kucafe.distanceTo(location_current) <= 40) {
-            Marker kucafe = mMap.addMarker(new MarkerOptions()
+            mMap.addMarker(new MarkerOptions()
                     .position(kuffc)
                     .title("KU Fast Food and Cafe")
                     .snippet("Breakfast"));
@@ -818,7 +869,7 @@ String[] name;
         location_basketballc.setLongitude(85.5365391);
 
         if (location_basketballc.distanceTo(location_current) <= 30) {
-            Marker basketball_court = mMap.addMarker(new MarkerOptions()
+           mMap.addMarker(new MarkerOptions()
                     .position(basketballc)
                     .title("KU BasketBall Court")
                     .snippet("Basketball Games"));
@@ -901,257 +952,257 @@ String[] name;
 
         switch (getNumber) {
             case "1":
-                Marker kulibpark = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(libpark)
                         .title("Main Square")
                         .snippet("Block 1")
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                shakemob();
+
 
                 break;
             case "2":
-                Marker adminBlock = mMap.addMarker(new MarkerOptions()
+               mMap.addMarker(new MarkerOptions()
                         .position(admin)
                         .title("Administrative Block")
                         .snippet("Block 2")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
                 break;
             case "3":
-                Marker kulib = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(library)
                         .title("KU Central Library")
                         .snippet("Block 3")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
                 break;
             case "4":
-                Marker cv_raman = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(cvraman)
                         .title("CV Raman Auditorium")
                         .snippet("Meeting Halls and Auditorium")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
                 break;
             case "5":
-                Marker khetanpark = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(khetan)
                         .title("Khetan Park / Saraswoti Temple")
                         .snippet("Park")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
                 break;
             case "6":
-                Marker sosBlock = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(schoolosBlock)
                         .title("School of Science Block")
                         .snippet("Block 6")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
                 break;
             case "7":
-                Marker btBlock = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(biotechBlock)
                         .title("BioTechnology Block")
                         .snippet("Block 7")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "8":
-                Marker mBlock = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(mechanicalBlock)
                         .title("Mechanical and Electrical Block")
                         .snippet("Block 8")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
                 break;
             case "9":
-                Marker newdocse = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(newcomp)
                         .title("New DoCSE")
                         .snippet("Block 9")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
                 break;
             case "10":
-                Marker lecture = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(lechall)
                         .title("Lecture Hall")
                         .snippet("Block 10")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
                 break;
             case "11":
-                Marker cngBlock = mMap.addMarker(new MarkerOptions()
+               mMap.addMarker(new MarkerOptions()
                         .position(civilBlock)
                         .title("Civil and Geomatics Block")
                         .snippet("Block 11")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
 
                 break;
             case "12":
-                Marker pharBlock = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(pharmacyBlock)
                         .title("Pharmacy Block")
                         .snippet("Block 12")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
 
                 break;
             case "13":
-                Marker canteen2 = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(mess)
                         .title("Mess / Canteen 2")
                         .snippet("Lunch/Dinner")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
                 break;
             case "14":
-                Marker kucse = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(compdepart)
                         .title("Department of Computer Science and Engineering")
                         .snippet("KUCSE")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "15":
-                Marker kusq = mMap.addMarker(new MarkerOptions()
+               mMap.addMarker(new MarkerOptions()
                         .position(kukusq)
                         .title("Kathmandu University Staff Quater")
                         .snippet("Staff Quater")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "16":
-                Marker ttch = mMap.addMarker(new MarkerOptions()
+               mMap.addMarker(new MarkerOptions()
                         .position(ttchostel)
                         .title("TTC Boys Hostel")
                         .snippet("Hostel")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "17":
-                Marker kughi = mMap.addMarker(new MarkerOptions()
+               mMap.addMarker(new MarkerOptions()
                         .position(kukughi)
                         .title("Kathmandu University Girls Hostel I")
                         .snippet("Hostel")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "18":
-                Marker kubh = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(kukubh)
                         .title("Kathmandu University Boys Hostel")
                         .snippet("Hostel")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "19":
-                Marker enved = mMap.addMarker(new MarkerOptions()
+               mMap.addMarker(new MarkerOptions()
                         .position(enve)
                         .title("Environmental Science and Engineering Block ")
                         .snippet("ENVE and ENVS")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "20":
-                Marker social_hall = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(socialhall)
                         .title("Social Hall")
                         .snippet("Indoor Games and TV room")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "21":
-                Marker multihall = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(multi)
                         .title("Multipurpose Hall")
                         .snippet("Hall")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "22":
-                Marker football_ground = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(footballg)
                         .title("KU Football Ground")
                         .snippet("Football and Games")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "23":
-                Marker mttca = mMap.addMarker(new MarkerOptions()
+               mMap.addMarker(new MarkerOptions()
                         .position(ttca)
                         .title("Technical Training Center (A)")
                         .snippet("TTC (a)")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "24":
-                Marker mttcb = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(ttcb)
                         .title("Technical Training Center (B)")
                         .snippet("TTC (b)")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "25":
-                Marker mttl = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(ttl)
                         .title("Turbine Testing Lab")
                         .snippet("TTL")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "26":
-                Marker mpark = mMap.addMarker(new MarkerOptions()
+               mMap.addMarker(new MarkerOptions()
                         .position(mainpark)
                         .title("Main Entrance Parking")
                         .snippet("Parking")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "27":
-                Marker kuswim = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(swim)
                         .title("Swimming Pool")
                         .snippet("swim")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "28":
-                Marker volley = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(volleyballc)
                         .title("Volleyball Court")
                         .snippet("Games")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "29":
-                Marker kucafe = mMap.addMarker(new MarkerOptions()
+               mMap.addMarker(new MarkerOptions()
                         .position(kuffc)
                         .title("KU Fast Food and Cafe")
                         .snippet("Breakfast")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "30":
-                Marker basketball_court = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(basketballc)
                         .title("KU BasketBall Court")
                         .snippet("Basketball Games")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "31":
-                Marker kughii = mMap.addMarker(new MarkerOptions()
+               mMap.addMarker(new MarkerOptions()
                         .position(kukughii)
                         .title("Kathmandu University Girls Hostel II")
                         .snippet("Hostel")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "32":
-                Marker kufsqu = mMap.addMarker(new MarkerOptions()
+               mMap.addMarker(new MarkerOptions()
                         .position(kufsq)
                         .title("KU Family Staff Quater")
                         .snippet("Staff Quater")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "33":
-                Marker kughiii = mMap.addMarker(new MarkerOptions()
+                mMap.addMarker(new MarkerOptions()
                         .position(kukughiii)
                         .title("Kathmandu University Girls Hostel III")
                         .snippet("Hostel")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
             case "34":
-                Marker chemnmath = mMap.addMarker(new MarkerOptions()
+               mMap.addMarker(new MarkerOptions()
                         .position(chemandmath)
                         .title("Department of Chemistry and Mathematics")
                         .snippet("Offices")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));shakemob();
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
 
         }
@@ -1373,11 +1424,13 @@ String[] name;
 
 
 
+
+/*
     public void shakemob(){
         Vibrator v= (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
         v.vibrate(400);
 
     }
-
+*/
 
 }

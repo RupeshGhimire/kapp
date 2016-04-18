@@ -9,23 +9,65 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class BlocksActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
-
+    List<String> departName;
+    ArrayAdapter<String> mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
         setContentView(R.layout.activity_block);
+
+        String[] data = {
+                "Main Square",
+                "Administration",
+                "Library",
+                "C.V. Raman Auditorium",
+                "Khetan Park",
+                "School of Science",
+                "School of Engineering"
+        };
+        departName = new ArrayList<String>(Arrays.asList(data));
+
+        mAdapter =
+                new ArrayAdapter<String>(this,
+                        R.layout.list_block,
+                        R.id.block,
+                        departName
+                );
+
+
+        ListView listView= (ListView)findViewById(R.id.list_view);
+
+        listView.setAdapter(mAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                dispDepartmentInfo(++position);
+            }
+        });
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -89,13 +131,14 @@ public class BlocksActivity extends AppCompatActivity
         }
 
         else if(id == R.id.nav_blocks){
-            Toast.makeText(this, "Blocks.",
+            Toast.makeText(this, "Blocks",
                     Toast.LENGTH_LONG).show();
         }
 
         else if (id == R.id.nav_us) {
-            Toast.makeText(this, "About Us",
-                    Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, about_us.class);
+            startActivity(intent);
+            finish();
 
 
         }
@@ -140,36 +183,37 @@ public class BlocksActivity extends AppCompatActivity
     }
 
 
-    public void dispDepartmentInfo(View view){
+    public void dispDepartmentInfo(int position){
 
         String [] key;
         key = new String[2];
         Intent intent = new Intent(this, ScrollingActivity.class);
         Bundle mBundle = new Bundle();
         key[0]="BlocksActivity";
-        switch (view.getId()) {
-            case R.id.one:
+        switch (position) {
+            case 1:
                 key[1]="1";
                 break;
-            case R.id.two:
+            case 2:
                 key[1]="2";
                 break;
-            case R.id.three:
+            case 3:
                 key[1]="3";
                 break;
-            case R.id.four:
+            case 4:
                 key[1]="4";
                 break;
-            case R.id.five:
+            case 5:
                 key[1]="5";
                 break;
-            case R.id.six:
+
+            case 6:
                 key[1]="6";
                 break;
-            case R.id.seven:
+            case 7:
                 key[1]="7";
                 break;
-            case R.id.eight:
+            /*case R.id.eight:
                 key[1]="8";
                 break;
             case R.id.nine:
@@ -250,7 +294,7 @@ public class BlocksActivity extends AppCompatActivity
             case R.id.thirtyfour:
                 key[1]="34";
                 break;
-
+*/
         }
         mBundle.putStringArray("data", key);
         intent.putExtras(mBundle);

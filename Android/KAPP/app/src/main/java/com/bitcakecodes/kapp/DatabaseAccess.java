@@ -120,7 +120,15 @@ public class DatabaseAccess {
         else
             return 0;
     }
+    public Cursor getallRows (){
+        Cursor c = database.rawQuery("SELECT * FROM kuinfo", null);
+        if(c!=null){
+            c.moveToFirst();
+        }
+        return c;
 
+
+    }
     /*public int databaseToInt(int key, int j)
     {
         int i;

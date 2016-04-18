@@ -1,33 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_light">
-
+    android:background="@color/primary"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:gravity="center">
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:id="@+id/kulogo"
+        android:src="@drawable/kulogo"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="kathmandu university"
+        android:id="@+id/ku"
+        android:gravity="center"
+        android:textColor="@color/accent"
+
+        android:padding="16dp"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+
+        android:layout_marginTop="6dp"
         android:id="@+id/imageView2"
         android:src="@drawable/logo"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+       />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="KAAP"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/imageView2"
-        android:layout_centerHorizontal="true" />
+        android:text="KAPP (ku app)"
+        android:id="@+id/kapp"
+        android:gravity="center"
+        android:textColor="@color/accent"
+
+        android:padding="16dp"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="@string/email"
+        android:id="@+id/bitcake"
+        android:textColor="@color/accent"
+        android:gravity="center"
+        android:padding="20dp"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Beta Version 1.0"
+        android:text="Beta Version 2.0"
         android:id="@+id/textView3"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-</RelativeLayout>
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:padding="20dp"
+
+        />
+</LinearLayout>

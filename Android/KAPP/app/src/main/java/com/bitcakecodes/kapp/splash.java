@@ -16,7 +16,7 @@ public class splash extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    sleep(1000);
+                    sleep(2000);
                     finish();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

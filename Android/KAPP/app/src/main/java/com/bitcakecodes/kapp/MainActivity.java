@@ -1,6 +1,8 @@
 package com.bitcakecodes.kapp;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,19 +12,36 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
     String [] key;
+    DatabaseAccess databaseAccess;
+
 
     private static int x=1;
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
+    List<String> departName;
+    List<String> departNo;
+    ArrayAdapter<String> mAdapter;
+    ArrayAdapter<String> mAdapterNum;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +55,55 @@ public class MainActivity extends AppCompatActivity
 
 
         setContentView(R.layout.activity_main);
+
+        String[] data = {
+                "Notice and Announcements",
+                "Exam Section",
+                "Tender Notice",
+
+        };
+        String[] depno = {
+                "01",
+                "02",
+                "03",
+                "04",
+                "04",
+                "06",
+                "07"
+        };
+
+        departName = new ArrayList<String>(Arrays.asList(data));
+        departNo = new ArrayList<String>(Arrays.asList(depno));
+
+        mAdapter =
+                new ArrayAdapter<String>(this,
+                        R.layout.home_screen,
+                        R.id.header,
+                        departName
+                );
+        mAdapterNum =
+                new ArrayAdapter<String>(this,
+                        R.layout.list_block,
+                        R.id.blockNo,
+                        departNo
+                );
+        //inflate the header view
+        View header= LayoutInflater.from(this).inflate(R.layout.list_header,null);
+        //create a list view
+        ListView listView= (ListView)findViewById(R.id.list_view);
+        //add header view to the list view
+        listView.addHeaderView(header, null, false);
+        //set adapter to display the data from the array declared above
+
+        listView.setAdapter(mAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                dispDepartmentInfo(position);
+            }
+        });
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -172,79 +240,80 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    public void dispDepartmentInfo(View view){
+    public void dispDepartmentInfo(int position){
 
         key = new String[3];
         Intent intent = new Intent(this, ScrollingActivity.class);
         Bundle mBundle = new Bundle();
         key[0]="MainActivity";
-        switch (view.getId()) {
-            case R.id.one:
+        //this is different than the original code because of the list view
+        switch (position) {
+            case 1:
 
                 key[1]="1";
 
                 break;
-            case R.id.two:
+            case 2:
 
                 key[1]="2";
 
                 break;
-            case R.id.three:
+            case 3:
 
                 key[1]="3";
 
                 break;
-            case R.id.four:
+            case 4:
 
                 key[1]="4";
 
                 break;
-            case R.id.five:
+            case 5:
 
                 key[1]="5";
 
                 break;
-            case R.id.six:
+            case 6:
 
                 key[1]="6";
 
                 break;
-            case R.id.seven:
+            case 7:
 
                 key[1]="7";
 
                 break;
-            case R.id.eight:
+            case 8:
 
                 key[1]="8";
 
                 break;
-            case R.id.nine:
+            case 9:
 
                 key[1]="9";
 
 
                 break;
-            case R.id.ten:
+            case 10:
 
                 key[1]="10";
 
                 break;
-            case R.id.eleven:
+            case 11:
 
                 key[1]="11";
 
                 break;
-            case R.id.twelve:
+            case 12:
 
                 key[1]="12";
 
                 break;
-            case R.id.fourteen:
+            /*case R.id.fourteen:
 
                 key[1]="14";
 
-                break;
+                break;*/
 
         }
         mBundle.putStringArray("data", key);
@@ -253,7 +322,6 @@ public class MainActivity extends AppCompatActivity
         finish();
 
     }
-
 
 
 
