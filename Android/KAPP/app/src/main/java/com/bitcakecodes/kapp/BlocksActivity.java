@@ -8,6 +8,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,8 +30,10 @@ import java.util.List;
 public class BlocksActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
-    List<String> departName;
-    ArrayAdapter<String> mAdapter;
+   private String[] departmentName;
+    private String[] departmentNumber;
+   // private String[] departmentDescription;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,36 +41,15 @@ public class BlocksActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_block);
 
-        String[] data = {
-                "Main Square",
-                "Administration",
-                "Library",
-                "C.V. Raman Auditorium",
-                "Khetan Park",
-                "School of Science",
-                "School of Engineering"
-        };
-        departName = new ArrayList<String>(Arrays.asList(data));
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerView.LayoutManager recyclerViewLayout= new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(recyclerViewLayout);
+        mRecyclerView.setHasFixedSize(true);
 
-        mAdapter =
-                new ArrayAdapter<String>(this,
-                        R.layout.list_block,
-                        R.id.block,
-                        departName
-                );
+        getDepartmentInfo();
 
-
-        ListView listView= (ListView)findViewById(R.id.list_view);
-
-        listView.setAdapter(mAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                dispDepartmentInfo(++position);
-            }
-        });
-
+        RecyclerViewAdapter recyclerAdapter=new RecyclerViewAdapter(departmentName,departmentNumber,this);
+        mRecyclerView.setAdapter(recyclerAdapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -182,7 +165,7 @@ public class BlocksActivity extends AppCompatActivity
         return true;
     }
 
-
+/*
     public void dispDepartmentInfo(int position){
 
         String [] key;
@@ -191,27 +174,54 @@ public class BlocksActivity extends AppCompatActivity
         Bundle mBundle = new Bundle();
         key[0]="BlocksActivity";
         switch (position) {
-            case 1:
+            case 0:
                 key[1]="1";
                 break;
-            case 2:
+            case 1:
                 key[1]="2";
                 break;
-            case 3:
+            case 2:
                 key[1]="3";
                 break;
-            case 4:
+            case 3:
                 key[1]="4";
                 break;
-            case 5:
+            case 4:
                 key[1]="5";
                 break;
 
-            case 6:
+            case 5:
                 key[1]="6";
                 break;
-            case 7:
+            case 6:
                 key[1]="7";
+                break;
+            case 7:
+                key[1]="8";
+                break;
+            case 8:
+                key[1]="9";
+                break;
+            case 9:
+                key[1]="10";
+                break;
+            case 10:
+                key[1]="11";
+                break;
+            case 11:
+                key[1]="12";
+                break;
+            case 12:
+                key[1]="13";
+                break;
+            case 13:
+                key[1]="14";
+                break;
+            case 14:
+                key[1]="15";
+                break;
+            case 15:
+                key[1]="16";
                 break;
             /*case R.id.eight:
                 key[1]="8";
@@ -294,7 +304,7 @@ public class BlocksActivity extends AppCompatActivity
             case R.id.thirtyfour:
                 key[1]="34";
                 break;
-*/
+
         }
         mBundle.putStringArray("data", key);
         intent.putExtras(mBundle);
@@ -302,6 +312,36 @@ public class BlocksActivity extends AppCompatActivity
         finish();
 
     }
+*/
+
+    public void getDepartmentInfo() {
+
+        departmentName =new String[34];
+        departmentNumber =new String[34];
+        //departmentDescription =new String[32];
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        int a;
+        for(int i=0;i<34;i++){
+            a=i;
+            //title
+            departmentName[i]= databaseAccess.databaseToString(++a, 2);
+            a=i;
+            //description
+            //departmentDescription[i]= databaseAccess.databaseToString(++i, 6);
+            //blockno
+            if(i<9){
+                departmentNumber[i]="0"+String.valueOf(++a);
 
 
+            } else{
+                departmentNumber[i]=String.valueOf(++a);
+            }
+
+        }
+
+        //close database
+        databaseAccess.close();
+
+    }
 }

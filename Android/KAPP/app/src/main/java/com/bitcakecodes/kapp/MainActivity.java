@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity
         mAdapterNum =
                 new ArrayAdapter<String>(this,
                         R.layout.list_block,
-                        R.id.blockNo,
+                        R.id.departmentNumber,
                         departNo
                 );
         //inflate the header view

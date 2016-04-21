@@ -12,12 +12,12 @@
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_alert_dialog_button_bar_material.xml"
     },
     {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/activity_maps.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/activity_maps.xml"
-    },
-    {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/activity_maps.xml",
+        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/activity_maps.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",

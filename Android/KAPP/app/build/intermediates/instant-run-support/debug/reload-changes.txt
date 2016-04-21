@@ -1,0 +1,4 @@
+CHANGED,/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/bitcakecodes/kapp/RecyclerViewAdapter$RecyclerViewHolder$override.class
+CHANGED,/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/bitcakecodes/kapp/RecyclerViewAdapter$override.class
+CHANGED,/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/bitcakecodes/kapp/BlocksActivity$override.class
+CHANGED,/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/android/tools/fd/runtime/AppPatchesLoaderImpl.class
