@@ -1,5 +1,6 @@
 package com.bitcakecodes.kapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private String[] departmentName;
     private String[] departmentNumber;
     private Context context;
+    Activity blocksActivity;
 
 
 
@@ -49,6 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.departmentName=departmentName;
         this.departmentNumber=departmentNumber;
         this.context=context;
+
         //this.departmentDescription="Kathmandu University";
 
     }
@@ -141,93 +144,71 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             case 15:
                 key[1]="16";
                 break;
-            /*case R.id.eight:
-                key[1]="8";
-                break;
-            case R.id.nine:
-                key[1]="10";
-                break;
-            case R.id.ten:
-                key[1]="10";
-                break;
-            case R.id.eleven:
-                key[1]="9";
-                break;
-            case R.id.twelve:
-                key[1]="12";
-                break;
-            case R.id.thirteen:
-                key[1]="13";
-                break;
-            case R.id.fourteen:
-                key[1]="14";
-                break;
-            case R.id.fifteen:
-                key[1]="15";
-                break;
-            case R.id.sixteen:
-                key[1]="16";
-                break;
-            case R.id.seventeen:
+            case 16:
                 key[1]="17";
                 break;
-            case R.id.eighteen:
+            case 17:
                 key[1]="18";
                 break;
-            case R.id.nineteen:
+            case 18:
+                key[1]="17";
+                break;
+            case 19:
+                key[1]="18";
+                break;
+            case 20:
                 key[1]="19";
                 break;
-            case R.id.twenty:
+            case 21:
                 key[1]="20";
                 break;
-            case R.id.twentyone:
+            case 22:
                 key[1]="21";
                 break;
-            case R.id.twentytwo:
+            case 23:
                 key[1]="22";
                 break;
-            case R.id.twentythree:
+            case 24:
                 key[1]="23";
                 break;
-            case R.id.twentyfour:
+            case 25:
                 key[1]="24";
                 break;
-            case R.id.twentyfive:
+            case 26:
                 key[1]="25";
                 break;
-            case R.id.twentysix:
+            case 27:
                 key[1]="26";
                 break;
-            case R.id.twentyseven:
+            case 28:
                 key[1]="27";
                 break;
-            case R.id.twentyeight:
+            case 29:
                 key[1]="28";
                 break;
-            case R.id.twentynine:
+            case 30:
                 key[1]="29";
                 break;
-            case R.id.thirty:
+            case 31:
                 key[1]="30";
                 break;
-            case R.id.thirtyone:
+            case 32:
                 key[1]="31";
                 break;
-            case R.id.thirtytwo:
+            case 33:
                 key[1]="32";
                 break;
-            case R.id.thirtythree:
+            case 34:
                 key[1]="33";
                 break;
-            case R.id.thirtyfour:
-                key[1]="34";
-                break;
-*/
         }
         mBundle.putStringArray("data", key);
         intent.putExtras(mBundle);
-        context.startActivity(intent);
-        
+        //context.startActivity(intent);
+        blocksActivity=(Activity) context;
+
+        blocksActivity.startActivity(intent);
+        blocksActivity.finish();
         //((this)context).finish();
 
     }
