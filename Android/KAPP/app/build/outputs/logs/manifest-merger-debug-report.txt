@@ -197,7 +197,7 @@ ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:49:9-
 activity#com.bitcakecodes.kapp.ScrollingActivity
 ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:52:9-55:59
 	android:label
-		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:54:13-49
+		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:54:13-33
 	android:theme
 		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:55:13-56
 	android:name

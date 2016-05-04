@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -87,6 +88,8 @@ private String[] name;
         TextView title = (TextView) findViewById(R.id.title);
         TextView description = (TextView) findViewById(R.id.description);
         TextView school= (TextView) findViewById(R.id.school);
+        TextView dep= (TextView) findViewById(R.id.fixed);
+        CollapsingToolbarLayout toolbar= (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         switch (data[0]){
             case "8":case "9":case "11":case "14":
                 school.setText("School of Engineering");
@@ -99,12 +102,21 @@ private String[] name;
                 break;
             case "3":
                 school.setText("Library");
+
+
                 break;
             case "1":
                 school.setText("Central Perk");
+                toolbar.setBackgroundResource(R.drawable.square);
                 break;
             case "2":
                 school.setText("Administration");
+                toolbar.setBackgroundResource(R.drawable.ku);
+                break;
+            case "35":
+                dep.setText("Nepal");
+                school.setText("Department of Information Technology");
+                toolbar.setBackgroundResource(R.drawable.itpark);
                 break;
             default:
                 school.setText("Blocks");

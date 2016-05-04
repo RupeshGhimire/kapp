@@ -4,34 +4,29 @@
     api-level="23"
     density="xxxhdpi"
     format="7"
-    timestamp="2625695828650" >
+    timestamp="221949495731" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="3934" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="243" />
     <task
         name="verifier"
-        duration="0" />
+        duration="121" />
 
     <artifact
-        location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex"
-        type="DEX" />
+        location="/home/lognod/kapp/Android/KAPP/app/build/outputs/apk/app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="1762510959219" >
+    <build timestamp="15088825438533" >
         <artifact
-            location="/home/lognod/kapp/Android/KAPP/app/build/outputs/apk/app-debug.apk"
-            type="MAIN" />
-    </build>
-    <build timestamp="2625695828650" >
-        <artifact
-            location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex"
-            type="DEX" />
+            location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/resources-debug.ap_"
+            type="RESOURCES" />
     </build>
 
 </instant-run>

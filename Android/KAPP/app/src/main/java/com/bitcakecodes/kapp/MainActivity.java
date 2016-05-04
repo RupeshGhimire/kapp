@@ -57,9 +57,11 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         String[] data = {
-                "Notice and Announcements",
-                "Exam Section",
-                "Tender Notice",
+                "Main Square",
+                "Administration",
+                "Library",
+                "C.V. Raman Auditorium",
+                "Khetan Park"
 
         };
         String[] depno = {
@@ -193,6 +195,18 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent_block);
             finish();
         }
+        else if (id == R.id.nav_itPark) {
+            Bundle mBundle = new Bundle();
+            key = new String[3];
+            key[0]="MainActivity";
+            key[1]="35";
+            Intent intent = new Intent(this, ScrollingActivity.class);
+            mBundle.putStringArray("data", key);
+            intent.putExtras(mBundle);
+            startActivity(intent);
+            finish();
+
+        }
 
         else if (id == R.id.nav_us) {
             Intent intent = new Intent(this, about_us.class);
@@ -273,42 +287,7 @@ public class MainActivity extends AppCompatActivity
                 key[1]="5";
 
                 break;
-            case 6:
 
-                key[1]="6";
-
-                break;
-            case 7:
-
-                key[1]="7";
-
-                break;
-            case 8:
-
-                key[1]="8";
-
-                break;
-            case 9:
-
-                key[1]="9";
-
-
-                break;
-            case 10:
-
-                key[1]="10";
-
-                break;
-            case 11:
-
-                key[1]="11";
-
-                break;
-            case 12:
-
-                key[1]="12";
-
-                break;
             /*case R.id.fourteen:
 
                 key[1]="14";

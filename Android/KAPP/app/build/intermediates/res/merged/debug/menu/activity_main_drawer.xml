@@ -12,6 +12,10 @@
 
             android:title="Blocks" />
         <item
+            android:id="@+id/nav_itPark"
+
+            android:title="IT Park" />
+        <item
             android:id="@+id/nav_us"
 
             android:title="About Us" />

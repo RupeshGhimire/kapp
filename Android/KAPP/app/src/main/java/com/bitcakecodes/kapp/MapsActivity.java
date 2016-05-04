@@ -21,6 +21,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import android.widget.CheckBox;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -34,21 +35,30 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.GroundOverlay;
+import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MapsActivity extends FragmentActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener,
-        GoogleMap.OnInfoWindowClickListener {
+        GoogleMap.OnInfoWindowClickListener
+
+        {
 
     //commented asof 16th april 2016 is.an.lognod
     /*
@@ -60,6 +70,20 @@ public class MapsActivity extends FragmentActivity implements
 
     public static final String TAG = MapsActivity.class.getSimpleName();
 
+    //is.an.lognod
+
+
+    private GroundOverlay mGroundOverlayBlock10;
+            Marker ttch,mttca,mttcb,multihall,kubh,social_hall,kulibpark,adminBlock, kulib,cv_raman,sosBlock,khetanpark,btBlock,mBlock,lecture,newdocse,cngBlock,pharBlock,canteen2,kucse,kusq,kughi,enved,
+                    football_ground,mttl,mpark,kuswim,volley,kucafe,basketball_court,kughii,kufsqu,kughiii,
+            chemnmath;
+            Marker itPark;
+            boolean beenInside=false;
+
+
+
+    //is.an.lognod
+
     //private FusedLocationProviderApi fusedLocationProviderApi = LocationServices.FusedLocationApi;
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
@@ -67,8 +91,8 @@ public class MapsActivity extends FragmentActivity implements
     private GoogleApiClient mGoogleApiClient; //Provide entry point to google play service
     private LocationRequest mLocationRequest;
     Location location;
-    double[] lat = new double[35];
-    double[] lon = new double[35];
+    double[] lat = new double[36];
+    double[] lon = new double[36];
 
     LatLng libpark;
     LatLng admin;
@@ -104,12 +128,13 @@ public class MapsActivity extends FragmentActivity implements
     LatLng kufsq;//32 family staff quater
     LatLng kukughiii; //aa //33
     LatLng chemandmath;//34 aquatic ecology Center
+            LatLng iTPark;
 
 
     public void fetching() {
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
-        for (int i = 1; i <= 34; i++) {
+        for (int i = 1; i <= 35; i++) {
             lat[i] = databaseAccess.dataTodouble(i, 3);
             lon[i] = databaseAccess.dataTodouble(i, 4);
         }
@@ -147,7 +172,7 @@ public class MapsActivity extends FragmentActivity implements
         kufsq = new LatLng(lat[32], lon[32]);//32 family staff quater
         kukughiii = new LatLng(lat[33], lon[33]); //aa //33
         chemandmath = new LatLng(lat[34], lon[34]);//34 aquatic ecology Center
-
+        iTPark = new LatLng(lat[35], lon[35]);
        /* for(int i=1;i<=33;i++)
     {
         lat[i] = databaseAccess.dataTodouble(i,3);
@@ -224,9 +249,12 @@ public class MapsActivity extends FragmentActivity implements
                 //this conditon is removed in the onLocaitonChanged Method
                 if(cameraPosition.zoom<16.0f){
 
-                   mMap.animateCamera(CameraUpdateFactory.zoomTo(initialZoom), 2000, null);
-                   mMap.moveCamera(CameraUpdateFactory
-                       .newLatLngZoom(new LatLng(27.6186480, 85.5375810), initialZoom));
+
+                    mMap.moveCamera(CameraUpdateFactory
+                            .newLatLngZoom(new LatLng(27.6186480, 85.5375810), (float) 16.9));
+                    mMap.animateCamera(CameraUpdateFactory.zoomTo(initialZoom), 2000, null);
+
+
 
                 }
 
@@ -258,10 +286,11 @@ public class MapsActivity extends FragmentActivity implements
         //location = null;
         //this eliminates the problem of not requesting the location after resume
         setUpMapIfNeeded();
+       /*
         if(!mRequestingLocation){
             handleNewLocation(location);
         }
-
+*/
         mGoogleApiClient.connect();
 
 
@@ -308,9 +337,12 @@ public class MapsActivity extends FragmentActivity implements
 
 
 
+
         mMap.moveCamera(CameraUpdateFactory
                 .newLatLngZoom(new LatLng(27.6186480, 85.5375810), (float) 16.9));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(initialZoom), 2000, null);
+
+        insertBounds();
 
 
     }
@@ -339,6 +371,7 @@ public class MapsActivity extends FragmentActivity implements
 
         if (counter == 0) {
             mMap.clear();
+            insertBounds();
             /*MarkerOptions options = new MarkerOptions()
                     .position(latlng)
                     .icon(BitmapDescriptorFactory
@@ -368,6 +401,30 @@ public class MapsActivity extends FragmentActivity implements
         location_current.setLongitude(currentLongitude);
 
         //For KUBH  27.6177657,85.5367331
+        Location location_itPark = new Location("point A");
+        location_itPark.setLatitude(27.617349);
+        location_itPark.setLongitude( 85.526768);
+
+        //Toast.makeText(getApplicationContext(), "" + location_kubh.
+        //       distanceTo(location_current), Toast.LENGTH_SHORT).show();
+
+        if (location_itPark.distanceTo(location_current) <= 100) {
+            itPark = mMap.addMarker(new MarkerOptions()
+                    .position(iTPark)
+                    .title("IT Park")
+                    .snippet("IT Meet 2016"));
+
+            // mMarkers.put(kubh.getId(), myObject.getId());
+            counter = 1;
+        }
+
+        if (itPark!=null&&location_itPark.distanceTo(location_current) > 100) {
+            counter = 0;
+            itPark=null;
+        }
+
+
+        //For KUBH  27.6177657,85.5367331
         Location location_kubh = new Location("point A");
         location_kubh.setLatitude(27.6177657);
         location_kubh.setLongitude(85.5367331);
@@ -376,7 +433,7 @@ public class MapsActivity extends FragmentActivity implements
         //       distanceTo(location_current), Toast.LENGTH_SHORT).show();
 
         if (location_kubh.distanceTo(location_current) <= 43) {
-            mMap.addMarker(new MarkerOptions()
+             kubh = mMap.addMarker(new MarkerOptions()
                     .position(kukubh)
                     .title("Kathmandu University Boys Hostel")
                     .snippet("Hostel"));
@@ -385,8 +442,9 @@ public class MapsActivity extends FragmentActivity implements
             counter = 1;
         }
 
-        if (location_kubh.distanceTo(location_current) > 43) {
+        if (kubh!=null&&location_kubh.distanceTo(location_current) > 43) {
             counter = 0;
+            kubh=null;
         }
 
 
@@ -396,14 +454,15 @@ public class MapsActivity extends FragmentActivity implements
         location_socialhall.setLongitude(85.5364949);
 
         if (location_socialhall.distanceTo(location_current) <= 32) {
-            mMap.addMarker(new MarkerOptions()
+            social_hall = mMap.addMarker(new MarkerOptions()
                     .position(socialhall)
                     .title("Social Hall")
                     .snippet("Indoor Games and TV room"));
             counter = 1;
         }
-        if (location_socialhall.distanceTo(location_current) > 32) {
+        if (social_hall!=null&&location_socialhall.distanceTo(location_current) > 32) {
             counter = 0;
+            social_hall=null;
         }
 
         //For KU Library Park   27.6193039,85.5386311
@@ -414,7 +473,7 @@ public class MapsActivity extends FragmentActivity implements
 
         if (location_kulibpark.distanceTo(location_current) <= 39) {
 
-            Marker kulibpark = mMap.addMarker(new MarkerOptions()
+             kulibpark = mMap.addMarker(new MarkerOptions()
                     .position(libpark)
                     .title("Main Square")
                     .snippet("Block 1"));
@@ -422,8 +481,9 @@ public class MapsActivity extends FragmentActivity implements
 
 
         }
-        if (location_kulibpark.distanceTo(location_current) > 39) {
+        if (kulibpark!=null&&location_kulibpark.distanceTo(location_current) > 39) {
             counter = 0;
+            kulibpark=null;
         }
 
         //For admin block  27.6195606,85.5386576
@@ -433,15 +493,16 @@ public class MapsActivity extends FragmentActivity implements
 
 
         if (location_admin.distanceTo(location_current) <= 42) {
-            Marker adminBlock = mMap.addMarker(new MarkerOptions()
+            adminBlock = mMap.addMarker(new MarkerOptions()
                     .position(admin)
                     .title("Administrative Block")
                     .snippet("Block 2"));
             counter = 1;
         }
 
-        if (location_admin.distanceTo(location_current) > 42) {
+        if (adminBlock!=null&&location_admin.distanceTo(location_current) > 42) {
             counter = 0;
+            adminBlock=null;
         }
 
 
@@ -451,15 +512,16 @@ public class MapsActivity extends FragmentActivity implements
         location_kulib.setLongitude(85.5386187);
 
         if (location_kulib.distanceTo(location_current) <= 40) {
-            Marker kulib = mMap.addMarker(new MarkerOptions()
+            kulib = mMap.addMarker(new MarkerOptions()
                     .position(library)
                     .title("KU Central Library")
                     .snippet("Block 3"));
             counter = 1;
 
         }
-        if (location_kulib.distanceTo(location_current) > 40) {
+        if ( kulib!=null&&location_kulib.distanceTo(location_current) > 40) {
             counter = 0;
+            kulib=null;
         }
 
         //For CV Raman Auditorium - 27.6192472,85.5388976
@@ -468,14 +530,15 @@ public class MapsActivity extends FragmentActivity implements
         location_cvraman.setLongitude(85.5388976);
 
         if (location_cvraman.distanceTo(location_current) <= 42) {
-            Marker cv_raman = mMap.addMarker(new MarkerOptions()
+           cv_raman = mMap.addMarker(new MarkerOptions()
                     .position(cvraman)
                     .title("CV Raman Auditorium")
                     .snippet("Meeting Halls and Auditorium"));
             counter = 1;
         }
-        if (location_cvraman.distanceTo(location_current) > 42) {
+        if (cv_raman!=null&&location_cvraman.distanceTo(location_current) > 42) {
             counter = 0;
+            cv_raman=null;
         }
 
         //For Khetan Park   27.6200878,85.5384453
@@ -486,7 +549,7 @@ public class MapsActivity extends FragmentActivity implements
 
         if (location_khetanpark.distanceTo(location_current) <= 47) {
 
-            Marker khetanpark = mMap.addMarker(new MarkerOptions()
+             khetanpark = mMap.addMarker(new MarkerOptions()
                     .position(khetan)
                     .title("Khetan Park / Saraswoti Temple")
                     .snippet("Park"));
@@ -494,8 +557,9 @@ public class MapsActivity extends FragmentActivity implements
 
 
         }
-        if (location_khetanpark.distanceTo(location_current) > 47) {
+        if (khetanpark!=null&&location_khetanpark.distanceTo(location_current) > 47) {
             counter = 0;
+            khetanpark=null;
         }
 
         //For School of Science   27.6189380,85.5393359
@@ -504,14 +568,15 @@ public class MapsActivity extends FragmentActivity implements
         location_sos.setLongitude(85.5393359);
 
         if (location_sos.distanceTo(location_current) <= 45) {
-            Marker sosBlock = mMap.addMarker(new MarkerOptions()
+            sosBlock = mMap.addMarker(new MarkerOptions()
                     .position(schoolosBlock)
                     .title("School of Science Block")
                     .snippet("Block 6"));
             counter = 1;
         }
-        if (location_sos.distanceTo(location_current) > 45) {
+        if (sosBlock!=null&&location_sos.distanceTo(location_current) > 45) {
             counter = 0;
+            sosBlock=null;
         }
 
         //For Biotech  27.6192840,85.5395116
@@ -520,14 +585,15 @@ public class MapsActivity extends FragmentActivity implements
         location_bt.setLongitude(85.5395116);
 
         if (location_bt.distanceTo(location_current) <= 45) {
-            Marker btBlock = mMap.addMarker(new MarkerOptions()
+            btBlock = mMap.addMarker(new MarkerOptions()
                     .position(biotechBlock)
                     .title("BioTechnology Block")
                     .snippet("Block 7"));
             counter = 1;
         }
-        if (location_bt.distanceTo(location_current) > 45) {
+        if (btBlock!=null&&location_bt.distanceTo(location_current) > 45) {
             counter = 0;
+            btBlock=null;
         }
 
         //For mechanical  27.6197115,85.5393875
@@ -536,14 +602,15 @@ public class MapsActivity extends FragmentActivity implements
         location_mechanical.setLongitude(85.5393875);
 
         if (location_mechanical.distanceTo(location_current) <= 45) {
-            Marker mBlock = mMap.addMarker(new MarkerOptions()
+            mBlock = mMap.addMarker(new MarkerOptions()
                     .position(mechanicalBlock)
                     .title("Mechanical and Electrical Block")
                     .snippet("Block 8"));
             counter = 1;
         }
-        if (location_mechanical.distanceTo(location_current) > 45) {
+        if (mBlock!=null && location_mechanical.distanceTo(location_current) > 45) {
             counter = 0;
+            mBlock=null;
         }
 
         //For New DoCSE   27.6199428,85.5390331
@@ -552,14 +619,15 @@ public class MapsActivity extends FragmentActivity implements
         location_newcomp.setLongitude(85.5390331);
 
         if (location_newcomp.distanceTo(location_current) <= 39) {
-            Marker newdocse = mMap.addMarker(new MarkerOptions()
+             newdocse = mMap.addMarker(new MarkerOptions()
                     .position(newcomp)
                     .title("New DoCSE")
                     .snippet("Block 9"));
             counter = 1;
         }
-        if (location_newcomp.distanceTo(location_current) > 39) {
+        if (newdocse!=null&&location_newcomp.distanceTo(location_current) > 39) {
             counter = 0;
+            newdocse=null;
         }
 
         //For Lecture Hall   27.6196631,85.538091
@@ -568,14 +636,15 @@ public class MapsActivity extends FragmentActivity implements
         location_lechall.setLongitude(85.538091);
 
         if (location_lechall.distanceTo(location_current) <= 39) {
-            Marker lecture = mMap.addMarker(new MarkerOptions()
+            lecture = mMap.addMarker(new MarkerOptions()
                     .position(lechall)
                     .title("Lecture Hall")
                     .snippet("Block 10"));
             counter = 1;
         }
-        if (location_lechall.distanceTo(location_current) > 39) {
+        if (lecture!=null && location_lechall.distanceTo(location_current) > 39) {
             counter = 0;
+            lecture=null;
         }
 
         //For civil and geomatics   27.6192799,85.5380461
@@ -584,14 +653,15 @@ public class MapsActivity extends FragmentActivity implements
         location_civil.setLongitude(85.5380461);
 
         if (location_civil.distanceTo(location_current) <= 40) {
-            Marker cngBlock = mMap.addMarker(new MarkerOptions()
+            cngBlock = mMap.addMarker(new MarkerOptions()
                     .position(civilBlock)
                     .title("Civil and Geomatics Block")
                     .snippet("Block 11"));
             counter = 1;
         }
-        if (location_civil.distanceTo(location_current) > 40) {
+        if (cngBlock!=null&&location_civil.distanceTo(location_current) > 40) {
             counter = 0;
+            cngBlock=null;
         }
 
 
@@ -601,14 +671,15 @@ public class MapsActivity extends FragmentActivity implements
         location_phar.setLongitude(85.5380645);
 
         if (location_phar.distanceTo(location_current) <= 40) {
-            Marker pharBlock = mMap.addMarker(new MarkerOptions()
+            pharBlock = mMap.addMarker(new MarkerOptions()
                     .position(pharmacyBlock)
                     .title("Pharmacy Block")
                     .snippet("Block 12"));
             counter = 1;
         }
-        if (location_phar.distanceTo(location_current) > 40) {
+        if (pharBlock!=null&&location_phar.distanceTo(location_current) > 40) {
             counter = 0;
+            pharBlock=null;
         }
 
 
@@ -618,14 +689,15 @@ public class MapsActivity extends FragmentActivity implements
         location_mess.setLongitude(85.5378142);
 
         if (location_mess.distanceTo(location_current) <= 45) {
-            Marker canteen2 = mMap.addMarker(new MarkerOptions()
+            canteen2 = mMap.addMarker(new MarkerOptions()
                     .position(mess)
                     .title("Mess / Canteen 2")
                     .snippet("Lunch/Dinner"));
             counter = 1;
         }
-        if (location_mess.distanceTo(location_current) > 45) {
+        if (canteen2!=null&&location_mess.distanceTo(location_current) > 45) {
             counter = 0;
+            canteen2=null;
         }
 
 
@@ -636,14 +708,15 @@ public class MapsActivity extends FragmentActivity implements
 
 
         if (location_kucse.distanceTo(location_current) <= 40) {
-            Marker kucse = mMap.addMarker(new MarkerOptions()
+            kucse = mMap.addMarker(new MarkerOptions()
                     .position(compdepart)
                     .title("Department of Computer Science and Engineering")
                     .snippet("KUCSE"));
             counter = 1;
         }
-        if (location_kucse.distanceTo(location_current) > 40) {
+        if (kucse!=null&&location_kucse.distanceTo(location_current) > 40) {
             counter = 0;
+            kucse=null;
         }
 
 
@@ -653,14 +726,15 @@ public class MapsActivity extends FragmentActivity implements
         location_kusq.setLongitude(85.5393989);
 
         if (location_kusq.distanceTo(location_current) <= 48) {
-            Marker kusq = mMap.addMarker(new MarkerOptions()
+            kusq = mMap.addMarker(new MarkerOptions()
                     .position(kukusq)
                     .title("Kathmandu University Staff Quater")
                     .snippet("Staff Quater"));
             counter = 1;
         }
-        if (location_kusq.distanceTo(location_current) > 48) {
+        if (kusq!=null&&location_kusq.distanceTo(location_current) > 48) {
             counter = 0;
+            kusq=null;
         }
 
         //For TTC Boys hostel  27.6174015, 85.5372052
@@ -669,14 +743,16 @@ public class MapsActivity extends FragmentActivity implements
         location_ttchostel.setLongitude(85.5372052);
 
         if (location_ttchostel.distanceTo(location_current) <= 35) {
-            Marker ttch = mMap.addMarker(new MarkerOptions()
+            ttch = mMap.addMarker(new MarkerOptions()
                     .position(ttchostel)
                     .title("TTC Boys Hostel")
                     .snippet("Hostel"));
             counter = 1;
         }
-        if (location_ttchostel.distanceTo(location_current) > 35) {
-            counter = 0;
+        if (ttch!=null&&location_ttchostel.distanceTo(location_current) > 35) {
+        //    ttch.remove();
+            counter=0;
+            ttch=null;
         }
 
 
@@ -687,14 +763,15 @@ public class MapsActivity extends FragmentActivity implements
 
 
         if (location_kughi.distanceTo(location_current) <= 51) {
-            Marker kughi = mMap.addMarker(new MarkerOptions()
+            kughi = mMap.addMarker(new MarkerOptions()
                     .position(kukughi)
                     .title("Kathmandu University Girls Hostel I")
                     .snippet("Hostel"));
             counter = 1;
         }
-        if (location_kughi.distanceTo(location_current) > 51) {
+        if (kughi!=null&&location_kughi.distanceTo(location_current) > 51) {
             counter = 0;
+            kughi=null;
         }
 
 
@@ -704,14 +781,15 @@ public class MapsActivity extends FragmentActivity implements
         location_enve.setLongitude(85.5397969);
 
         if (location_enve.distanceTo(location_current) <= 50) {
-            Marker enved = mMap.addMarker(new MarkerOptions()
+            enved = mMap.addMarker(new MarkerOptions()
                     .position(enve)
                     .title("Environmental Science and Engineering Block")
                     .snippet("ENVE and ENVS"));
             counter = 1;
         }
-        if (location_enve.distanceTo(location_current) > 50) {
+        if (enved!=null&&location_enve.distanceTo(location_current) > 50) {
             counter = 0;
+            enved=null;
         }
 
         //For Multipurpose hall  27.6193721,85.5374158
@@ -720,14 +798,15 @@ public class MapsActivity extends FragmentActivity implements
         location_multi.setLongitude(85.5374158);
 
         if (location_multi.distanceTo(location_current) <= 46) {
-            Marker multihall = mMap.addMarker(new MarkerOptions()
+             multihall = mMap.addMarker(new MarkerOptions()
                     .position(multi)
                     .title("Multipurpose Hall")
                     .snippet("Hall"));
             counter = 1;
         }
-        if (location_multi.distanceTo(location_current) > 46) {
+        if (multihall!=null&&location_multi.distanceTo(location_current) > 46) {
             counter = 0;
+            multihall=null;
         }
 
 
@@ -737,14 +816,15 @@ public class MapsActivity extends FragmentActivity implements
         location_footballg.setLongitude(85.5373893);
 
         if (location_footballg.distanceTo(location_current) <= 55) {
-            mMap.addMarker(new MarkerOptions()
+            football_ground = mMap.addMarker(new MarkerOptions()
                     .position(footballg)
                     .title("KU Football Ground ")
                     .snippet("Football and Games"));
             counter = 1;
         }
-        if (location_footballg.distanceTo(location_current) > 55) {
+        if (football_ground!=null&&location_footballg.distanceTo(location_current) > 55) {
             counter = 0;
+            football_ground=null;
         }
 
         //For TTC a  27.6200704, 85.5377913
@@ -753,31 +833,41 @@ public class MapsActivity extends FragmentActivity implements
         location_ttca.setLongitude(85.5377913);
 
         if (location_ttca.distanceTo(location_current) <= 44) {
-            mMap.addMarker(new MarkerOptions()
+            mttca = mMap.addMarker(new MarkerOptions()
                     .position(ttca)
                     .title("Technical Training Center (A)")
                     .snippet("TTC (a)"));
             counter = 1;
+
         }
-        if (location_ttca.distanceTo(location_current) > 44) {
-            counter = 0;
+        if (mttca !=null && location_ttca.distanceTo(location_current) > 44) {
+            counter=0;
+            mttca=null;
+            //mMap.clear();
         }
+
 
         //For TTC b  27.6198939, 85.537474
         Location location_ttcb = new Location("point A");
         location_ttcb.setLatitude(27.6198939);
         location_ttcb.setLongitude(85.537474);
 
-        if (location_ttcb.distanceTo(location_current) <= 66) {
-           mMap.addMarker(new MarkerOptions()
+        if (location_ttcb.distanceTo(location_current) <= 50) {
+            mttcb = mMap.addMarker(new MarkerOptions()
                     .position(ttcb)
                     .title("Technical Training Center (B)")
                     .snippet("TTC (b)"));
             counter = 1;
+            beenInside=true;
+
         }
-        if (location_ttcb.distanceTo(location_current) > 66) {
-            counter = 0;
+        if (mttcb !=null && location_ttcb.distanceTo(location_current) > 50) {
+
+            counter =0;
+            mttcb=null;
+            //mMap.clear();
         }
+
 
         //For TTL  27.6197519, 85.5396222
         Location location_ttl = new Location("point A");
@@ -785,14 +875,15 @@ public class MapsActivity extends FragmentActivity implements
         location_ttl.setLongitude(85.5396222);
 
         if (location_ttl.distanceTo(location_current) <= 55) {
-           mMap.addMarker(new MarkerOptions()
+            mttl = mMap.addMarker(new MarkerOptions()
                     .position(ttl)
                     .title("Turbine Testing Lab")
                     .snippet("TTL"));
             counter = 1;
         }
-        if (location_ttl.distanceTo(location_current) > 55) {
+        if (mttl!=null&&location_ttl.distanceTo(location_current) > 55) {
             counter = 0;
+            mttl=null;
         }
 
         //For Main Entrance Park 27.6204824, 85.5380343
@@ -801,15 +892,17 @@ public class MapsActivity extends FragmentActivity implements
         location_mainpark.setLongitude(85.5380343);
 
         if (location_mainpark.distanceTo(location_current) <= 39) {
-            mMap.addMarker(new MarkerOptions()
+            mpark = mMap.addMarker(new MarkerOptions()
                     .position(mainpark)
                     .title("Main Entrance Parking")
                     .snippet("Parking"));
             counter = 1;
         }
-        if (location_mainpark.distanceTo(location_current) > 39) {
+        if (mpark!=null&&location_mainpark.distanceTo(location_current) > 39) {
             counter = 0;
+            mpark=null;
         }
+
 
         //For Swimming Pool    27.6193417, 85.5367187
         Location location_swim = new Location("point A");
@@ -817,14 +910,15 @@ public class MapsActivity extends FragmentActivity implements
         location_swim.setLongitude(85.5367187);
 
         if (location_swim.distanceTo(location_current) <= 68) {
-            mMap.addMarker(new MarkerOptions()
+            kuswim = mMap.addMarker(new MarkerOptions()
                     .position(swim)
                     .title("Swimming Pool")
                     .snippet("swim"));
             counter = 1;
         }
-        if (location_swim.distanceTo(location_current) > 68) {
+        if (kuswim!=null&&location_swim.distanceTo(location_current) > 68) {
             counter = 0;
+            kuswim=null;
         }
 
         //For Volleyball Court    27.6193369, 85.5370034
@@ -833,14 +927,15 @@ public class MapsActivity extends FragmentActivity implements
         location_volleyc.setLongitude(85.5370034);
 
         if (location_volleyc.distanceTo(location_current) <= 63) {
-           mMap.addMarker(new MarkerOptions()
+            volley = mMap.addMarker(new MarkerOptions()
                     .position(volleyballc)
                     .title("Volleyball Court")
                     .snippet("Game"));
             counter = 1;
         }
-        if (location_volleyc.distanceTo(location_current) > 63) {
+        if (volley!=null&&location_volleyc.distanceTo(location_current) > 63) {
             counter = 0;
+            volley=null;
         }
 
 
@@ -850,16 +945,17 @@ public class MapsActivity extends FragmentActivity implements
         location_kucafe.setLongitude(85.5384113);
 
         if (location_kucafe.distanceTo(location_current) <= 40) {
-            mMap.addMarker(new MarkerOptions()
+            kucafe = mMap.addMarker(new MarkerOptions()
                     .position(kuffc)
                     .title("KU Fast Food and Cafe")
                     .snippet("Breakfast"));
 
-
+            counter = 1;
         }
-        counter = 1;
-        if (location_kucafe.distanceTo(location_current) > 40) {
+
+        if (kucafe!=null&&location_kucafe.distanceTo(location_current) > 40) {
             counter = 0;
+            kucafe=null;
         }
 
 
@@ -869,14 +965,15 @@ public class MapsActivity extends FragmentActivity implements
         location_basketballc.setLongitude(85.5365391);
 
         if (location_basketballc.distanceTo(location_current) <= 30) {
-           mMap.addMarker(new MarkerOptions()
+            basketball_court = mMap.addMarker(new MarkerOptions()
                     .position(basketballc)
                     .title("KU BasketBall Court")
                     .snippet("Basketball Games"));
             counter = 1;
         }
-        if (location_basketballc.distanceTo(location_current) > 30) {
+        if (basketball_court!=null&&location_basketballc.distanceTo(location_current) > 30) {
             counter = 0;
+            basketball_court=null;
         }
 
 
@@ -887,14 +984,15 @@ public class MapsActivity extends FragmentActivity implements
 
 
         if (location_kughii.distanceTo(location_current) <= 34) {
-            Marker kughii = mMap.addMarker(new MarkerOptions()
+            kughii = mMap.addMarker(new MarkerOptions()
                     .position(kukughii)
                     .title("Kathmandu University Girls Hostel II")
                     .snippet("Hostel"));
             counter = 1;
         }
-        if (location_kughii.distanceTo(location_current) > 34) {
+        if (kughii!=null&&location_kughii.distanceTo(location_current) > 34) {
             counter = 0;
+            kughii=null;
         }
 
 
@@ -904,16 +1002,17 @@ public class MapsActivity extends FragmentActivity implements
         location_kufsq.setLongitude(85.5383817);
 
         if (location_kufsq.distanceTo(location_current) <= 39) {
-            Marker kufsqu = mMap.addMarker(new MarkerOptions()
+            kufsqu = mMap.addMarker(new MarkerOptions()
                     .position(kufsq)
                     .title("KU Family Staff Quater")
                     .snippet("Staff Quater"));
 
-
+            counter = 1;
         }
-        counter = 1;
-        if (location_kufsq.distanceTo(location_current) > 39) {
+
+        if (kufsqu!=null&&location_kufsq.distanceTo(location_current) > 39) {
             counter = 0;
+            kufsqu=null;
         }
 
 
@@ -923,14 +1022,15 @@ public class MapsActivity extends FragmentActivity implements
         location_kughiii.setLongitude(85.5379058);
 
         if (location_kughiii.distanceTo(location_current) <= 34) {
-            Marker kughiii = mMap.addMarker(new MarkerOptions()
+             kughiii = mMap.addMarker(new MarkerOptions()
                     .position(kukughiii)
                     .title("Kathmandu University Girls Hostel III")
                     .snippet("Hostel"));
             counter = 1;
         }
-        if (location_kughiii.distanceTo(location_current) > 34) {
+        if (kughiii!=null&&location_kughiii.distanceTo(location_current) > 34) {
             counter = 0;
+            kughiii=null;
         }
 
 
@@ -940,14 +1040,15 @@ public class MapsActivity extends FragmentActivity implements
         location_chemanmath.setLongitude(85.5397442);
 
         if (location_chemanmath.distanceTo(location_current) <= 38) {
-            Marker chemnmath = mMap.addMarker(new MarkerOptions()
+            chemnmath = mMap.addMarker(new MarkerOptions()
                     .position(chemandmath)
                     .title("Department of Chemistry and Mathematics")
                     .snippet("A.K.A. Aquatic Ecological Center"));
             counter = 1;
         }
-        if (location_chemanmath.distanceTo(location_current) > 38) {
+        if (chemnmath !=null&&location_chemanmath.distanceTo(location_current) > 38) {
             counter = 0;
+            chemnmath=null;
         }
 
         switch (getNumber) {
@@ -1204,6 +1305,20 @@ public class MapsActivity extends FragmentActivity implements
                         .snippet("Offices")
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 break;
+            case "35":
+                mMap.addMarker(new MarkerOptions()
+                        .position(iTPark)
+                        .title("IT Park")
+                        .snippet("IT MEET 2016")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                if(c==0){
+                    mMap.moveCamera(CameraUpdateFactory
+                            .newLatLngZoom(new LatLng(27.617349, 85.526768), (float) 20.9));
+                    mMap.animateCamera(CameraUpdateFactory.zoomTo(20.9f), 1000, null);
+                    c++;
+                }
+
+                break;
 
         }
 
@@ -1383,6 +1498,9 @@ public class MapsActivity extends FragmentActivity implements
             case "Department of Chemistry and Mathematics":
                 key[1]="34";
                 break;
+            case "IT Park":
+                key[1]="35";
+                break;
             default:
                 Toast.makeText(this, "Info window clicked",
                         Toast.LENGTH_LONG).show();
@@ -1432,5 +1550,16 @@ public class MapsActivity extends FragmentActivity implements
 
     }
 */
+            public void insertBounds(){
+                LatLngBounds latLngBounds = new LatLngBounds(new LatLng(27.619543, 85.537938),new LatLng(27.619888, 85.538187));
 
-}
+
+                mGroundOverlayBlock10 = mMap.addGroundOverlay(new GroundOverlayOptions()
+                        .image(BitmapDescriptorFactory.fromResource(R.drawable.block10)).anchor(0, 1)
+                        .positionFromBounds(latLngBounds)
+                        .bearing(5)
+                );
+
+            }
+
+        }
