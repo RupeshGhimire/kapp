@@ -32,12 +32,12 @@
         "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/drawable/block10.png"
     },
     {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/mr_ic_play_dark.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/drawable/mr_ic_play_dark.xml"
-    },
-    {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/abc_textfield_search_material.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/drawable/abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/mr_ic_play_dark.xml",
+        "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/drawable/mr_ic_play_dark.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/itpark.jpg",
@@ -48,16 +48,16 @@
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/drawable/abc_dialog_material_background_dark.xml"
     },
     {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/design_snackbar_background.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/design/23.2.1/res/drawable/design_snackbar_background.xml"
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/mr_ic_pause_dark.xml",
+        "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/drawable/mr_ic_pause_dark.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/abc_btn_default_mtrl_shape.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/drawable/abc_btn_default_mtrl_shape.xml"
     },
     {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/mr_ic_pause_dark.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/drawable/mr_ic_pause_dark.xml"
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/design_snackbar_background.xml",
+        "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/design/23.2.1/res/drawable/design_snackbar_background.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/mr_ic_pause_light.xml",
@@ -80,12 +80,12 @@
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/drawable/mr_ic_settings_light.xml"
     },
     {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/mr_ic_cast_light.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/drawable/mr_ic_cast_light.xml"
-    },
-    {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/notice.jpg",
         "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/drawable/notice.jpg"
+    },
+    {
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/mr_ic_cast_light.xml",
+        "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/drawable/mr_ic_cast_light.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_track_material.xml",

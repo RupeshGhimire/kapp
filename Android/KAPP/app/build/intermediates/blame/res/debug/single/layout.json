@@ -176,12 +176,12 @@
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_dialog_title_material.xml"
     },
     {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/list_block.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/list_block.xml"
-    },
-    {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/design_layout_tab_text.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/design/23.2.1/res/layout/design_layout_tab_text.xml"
+    },
+    {
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/list_block.xml",
+        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/list_block.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/mr_media_route_chooser_dialog.xml",
@@ -248,12 +248,12 @@
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_action_bar_title_item.xml"
     },
     {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/activity_about_us.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/activity_about_us.xml"
-    },
-    {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/activity_about_us.xml",
+        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/activity_about_us.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",

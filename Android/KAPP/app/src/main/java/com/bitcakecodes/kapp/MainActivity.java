@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,8 +19,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -301,7 +304,53 @@ public class MainActivity extends AppCompatActivity
         finish();
 
     }
+public void searchDatabase(View view){
+    EditText searchView = (EditText) findViewById(R.id.search);
+    String text = searchView.getText().toString();
+    
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        ArrayList<String> list = new ArrayList<String>();
+
+        String [] listString;
+        int x = databaseAccess.noofsearch(text);
+        listString = new String[x];
 
 
+        databaseAccess.close();
+        if (x==0){
+            Snackbar.make(view, "Payaena Hai Arko Khoja sathi :P", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+        else{
+            list = databaseAccess.searchrecord(text);
+            int i=0;
+            for (String s : list)
+            {
+                listString[i]= s;
+                i++;
+            }
+            Toast.makeText(MainActivity.this,listString[0], Toast.LENGTH_SHORT).show();
+            displayMarker(listString);
+        }
+
+
+
+
+}
+
+    public void displayMarker(String[] data){
+        String []name;
+        name = new String[3];
+        name[1]=data[0];
+        name[0]="MainActivity";
+        Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+        Bundle mBundle = new Bundle();
+        mBundle.putStringArray("data", name);
+        intent.putExtras(mBundle);
+
+        startActivity(intent);
+        finish();
+    }
 
 }

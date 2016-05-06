@@ -24,12 +24,12 @@
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/drawable-v21/abc_btn_colored_material.xml"
     },
     {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_gallery.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/drawable-v21/ic_menu_gallery.xml"
-    },
-    {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_send.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/drawable-v21/ic_menu_send.xml"
+    },
+    {
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_gallery.xml",
+        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/drawable-v21/ic_menu_gallery.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",

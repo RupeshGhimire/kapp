@@ -261,8 +261,10 @@ public class MapsActivity extends FragmentActivity implements
 
             }
         });
-
-
+        Bundle m = getIntent().getExtras();
+        String[] name = m.getStringArray("data");
+        getNumbers(name);
+    displayMarkers();
 
     }
 
@@ -354,9 +356,7 @@ public class MapsActivity extends FragmentActivity implements
 
     private void handleNewLocation(Location location) {
 
-        Bundle m = getIntent().getExtras();
-        String[] name = m.getStringArray("data");
-        getNumbers(name);
+
         //yo part bharkhar change garaeko
 
         /*CameraPosition.Builder position = CameraPosition.builder()
@@ -1051,276 +1051,7 @@ public class MapsActivity extends FragmentActivity implements
             chemnmath=null;
         }
 
-        switch (getNumber) {
-            case "1":
-                mMap.addMarker(new MarkerOptions()
-                        .position(libpark)
-                        .title("Main Square")
-                        .snippet("Block 1")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
-
-                break;
-            case "2":
-               mMap.addMarker(new MarkerOptions()
-                        .position(admin)
-                        .title("Administrative Block")
-                        .snippet("Block 2")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-                break;
-            case "3":
-                mMap.addMarker(new MarkerOptions()
-                        .position(library)
-                        .title("KU Central Library")
-                        .snippet("Block 3")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-                break;
-            case "4":
-                mMap.addMarker(new MarkerOptions()
-                        .position(cvraman)
-                        .title("CV Raman Auditorium")
-                        .snippet("Meeting Halls and Auditorium")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-                break;
-            case "5":
-                mMap.addMarker(new MarkerOptions()
-                        .position(khetan)
-                        .title("Khetan Park / Saraswoti Temple")
-                        .snippet("Park")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-                break;
-            case "6":
-                mMap.addMarker(new MarkerOptions()
-                        .position(schoolosBlock)
-                        .title("School of Science Block")
-                        .snippet("Block 6")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-                break;
-            case "7":
-                mMap.addMarker(new MarkerOptions()
-                        .position(biotechBlock)
-                        .title("BioTechnology Block")
-                        .snippet("Block 7")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "8":
-                mMap.addMarker(new MarkerOptions()
-                        .position(mechanicalBlock)
-                        .title("Mechanical and Electrical Block")
-                        .snippet("Block 8")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-                break;
-            case "9":
-                mMap.addMarker(new MarkerOptions()
-                        .position(newcomp)
-                        .title("New DoCSE")
-                        .snippet("Block 9")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-                break;
-            case "10":
-                mMap.addMarker(new MarkerOptions()
-                        .position(lechall)
-                        .title("Lecture Hall")
-                        .snippet("Block 10")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-                break;
-            case "11":
-               mMap.addMarker(new MarkerOptions()
-                        .position(civilBlock)
-                        .title("Civil and Geomatics Block")
-                        .snippet("Block 11")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-
-                break;
-            case "12":
-                mMap.addMarker(new MarkerOptions()
-                        .position(pharmacyBlock)
-                        .title("Pharmacy Block")
-                        .snippet("Block 12")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-
-                break;
-            case "13":
-                mMap.addMarker(new MarkerOptions()
-                        .position(mess)
-                        .title("Mess / Canteen 2")
-                        .snippet("Lunch/Dinner")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-                break;
-            case "14":
-                mMap.addMarker(new MarkerOptions()
-                        .position(compdepart)
-                        .title("Department of Computer Science and Engineering")
-                        .snippet("KUCSE")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "15":
-               mMap.addMarker(new MarkerOptions()
-                        .position(kukusq)
-                        .title("Kathmandu University Staff Quater")
-                        .snippet("Staff Quater")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "16":
-               mMap.addMarker(new MarkerOptions()
-                        .position(ttchostel)
-                        .title("TTC Boys Hostel")
-                        .snippet("Hostel")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "17":
-               mMap.addMarker(new MarkerOptions()
-                        .position(kukughi)
-                        .title("Kathmandu University Girls Hostel I")
-                        .snippet("Hostel")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "18":
-                mMap.addMarker(new MarkerOptions()
-                        .position(kukubh)
-                        .title("Kathmandu University Boys Hostel")
-                        .snippet("Hostel")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "19":
-               mMap.addMarker(new MarkerOptions()
-                        .position(enve)
-                        .title("Environmental Science and Engineering Block ")
-                        .snippet("ENVE and ENVS")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "20":
-                mMap.addMarker(new MarkerOptions()
-                        .position(socialhall)
-                        .title("Social Hall")
-                        .snippet("Indoor Games and TV room")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "21":
-                mMap.addMarker(new MarkerOptions()
-                        .position(multi)
-                        .title("Multipurpose Hall")
-                        .snippet("Hall")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "22":
-                mMap.addMarker(new MarkerOptions()
-                        .position(footballg)
-                        .title("KU Football Ground")
-                        .snippet("Football and Games")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "23":
-               mMap.addMarker(new MarkerOptions()
-                        .position(ttca)
-                        .title("Technical Training Center (A)")
-                        .snippet("TTC (a)")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "24":
-                mMap.addMarker(new MarkerOptions()
-                        .position(ttcb)
-                        .title("Technical Training Center (B)")
-                        .snippet("TTC (b)")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "25":
-                mMap.addMarker(new MarkerOptions()
-                        .position(ttl)
-                        .title("Turbine Testing Lab")
-                        .snippet("TTL")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "26":
-               mMap.addMarker(new MarkerOptions()
-                        .position(mainpark)
-                        .title("Main Entrance Parking")
-                        .snippet("Parking")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "27":
-                mMap.addMarker(new MarkerOptions()
-                        .position(swim)
-                        .title("Swimming Pool")
-                        .snippet("swim")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "28":
-                mMap.addMarker(new MarkerOptions()
-                        .position(volleyballc)
-                        .title("Volleyball Court")
-                        .snippet("Games")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "29":
-               mMap.addMarker(new MarkerOptions()
-                        .position(kuffc)
-                        .title("KU Fast Food and Cafe")
-                        .snippet("Breakfast")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "30":
-                mMap.addMarker(new MarkerOptions()
-                        .position(basketballc)
-                        .title("KU BasketBall Court")
-                        .snippet("Basketball Games")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "31":
-               mMap.addMarker(new MarkerOptions()
-                        .position(kukughii)
-                        .title("Kathmandu University Girls Hostel II")
-                        .snippet("Hostel")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "32":
-               mMap.addMarker(new MarkerOptions()
-                        .position(kufsq)
-                        .title("KU Family Staff Quater")
-                        .snippet("Staff Quater")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "33":
-                mMap.addMarker(new MarkerOptions()
-                        .position(kukughiii)
-                        .title("Kathmandu University Girls Hostel III")
-                        .snippet("Hostel")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "34":
-               mMap.addMarker(new MarkerOptions()
-                        .position(chemandmath)
-                        .title("Department of Chemistry and Mathematics")
-                        .snippet("Offices")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                break;
-            case "35":
-                mMap.addMarker(new MarkerOptions()
-                        .position(iTPark)
-                        .title("IT Park")
-                        .snippet("IT MEET 2016")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                if(c==0){
-                    mMap.moveCamera(CameraUpdateFactory
-                            .newLatLngZoom(new LatLng(27.617349, 85.526768), (float) 20.9));
-                    mMap.animateCamera(CameraUpdateFactory.zoomTo(20.9f), 1000, null);
-                    c++;
-                }
-
-                break;
-
-        }
 
 
 
@@ -1559,6 +1290,281 @@ public class MapsActivity extends FragmentActivity implements
                         .positionFromBounds(latLngBounds)
                         .bearing(5)
                 );
+
+            }
+
+            public void displayMarkers(){
+                switch (getNumber) {
+                    case "1":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(libpark)
+                                .title("Main Square")
+                                .snippet("Block 1")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+
+                        break;
+                    case "2":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(admin)
+                                .title("Administrative Block")
+                                .snippet("Block 2")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                        break;
+                    case "3":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(library)
+                                .title("KU Central Library")
+                                .snippet("Block 3")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                        break;
+                    case "4":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(cvraman)
+                                .title("CV Raman Auditorium")
+                                .snippet("Meeting Halls and Auditorium")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                        break;
+                    case "5":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(khetan)
+                                .title("Khetan Park / Saraswoti Temple")
+                                .snippet("Park")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                        break;
+                    case "6":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(schoolosBlock)
+                                .title("School of Science Block")
+                                .snippet("Block 6")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                        break;
+                    case "7":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(biotechBlock)
+                                .title("BioTechnology Block")
+                                .snippet("Block 7")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "8":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(mechanicalBlock)
+                                .title("Mechanical and Electrical Block")
+                                .snippet("Block 8")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                        break;
+                    case "9":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(newcomp)
+                                .title("New DoCSE")
+                                .snippet("Block 9")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                        break;
+                    case "10":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(lechall)
+                                .title("Lecture Hall")
+                                .snippet("Block 10")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                        break;
+                    case "11":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(civilBlock)
+                                .title("Civil and Geomatics Block")
+                                .snippet("Block 11")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+
+                        break;
+                    case "12":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(pharmacyBlock)
+                                .title("Pharmacy Block")
+                                .snippet("Block 12")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+
+                        break;
+                    case "13":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(mess)
+                                .title("Mess / Canteen 2")
+                                .snippet("Lunch/Dinner")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+                        break;
+                    case "14":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(compdepart)
+                                .title("Department of Computer Science and Engineering")
+                                .snippet("KUCSE")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "15":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(kukusq)
+                                .title("Kathmandu University Staff Quater")
+                                .snippet("Staff Quater")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "16":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(ttchostel)
+                                .title("TTC Boys Hostel")
+                                .snippet("Hostel")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "17":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(kukughi)
+                                .title("Kathmandu University Girls Hostel I")
+                                .snippet("Hostel")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "18":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(kukubh)
+                                .title("Kathmandu University Boys Hostel")
+                                .snippet("Hostel")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "19":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(enve)
+                                .title("Environmental Science and Engineering Block ")
+                                .snippet("ENVE and ENVS")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "20":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(socialhall)
+                                .title("Social Hall")
+                                .snippet("Indoor Games and TV room")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "21":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(multi)
+                                .title("Multipurpose Hall")
+                                .snippet("Hall")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "22":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(footballg)
+                                .title("KU Football Ground")
+                                .snippet("Football and Games")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "23":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(ttca)
+                                .title("Technical Training Center (A)")
+                                .snippet("TTC (a)")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "24":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(ttcb)
+                                .title("Technical Training Center (B)")
+                                .snippet("TTC (b)")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "25":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(ttl)
+                                .title("Turbine Testing Lab")
+                                .snippet("TTL")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "26":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(mainpark)
+                                .title("Main Entrance Parking")
+                                .snippet("Parking")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "27":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(swim)
+                                .title("Swimming Pool")
+                                .snippet("swim")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "28":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(volleyballc)
+                                .title("Volleyball Court")
+                                .snippet("Games")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "29":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(kuffc)
+                                .title("KU Fast Food and Cafe")
+                                .snippet("Breakfast")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "30":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(basketballc)
+                                .title("KU BasketBall Court")
+                                .snippet("Basketball Games")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "31":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(kukughii)
+                                .title("Kathmandu University Girls Hostel II")
+                                .snippet("Hostel")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "32":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(kufsq)
+                                .title("KU Family Staff Quater")
+                                .snippet("Staff Quater")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "33":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(kukughiii)
+                                .title("Kathmandu University Girls Hostel III")
+                                .snippet("Hostel")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "34":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(chemandmath)
+                                .title("Department of Chemistry and Mathematics")
+                                .snippet("Offices")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        break;
+                    case "35":
+                        mMap.addMarker(new MarkerOptions()
+                                .position(iTPark)
+                                .title("IT Park")
+                                .snippet("IT MEET 2016")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                        if(c==0){
+                            mMap.moveCamera(CameraUpdateFactory
+                                    .newLatLngZoom(new LatLng(27.617349, 85.526768), (float) 20.9));
+                            mMap.animateCamera(CameraUpdateFactory.zoomTo(20.9f), 1000, null);
+                            c++;
+                        }
+
+                        break;
+
+                }
+
 
             }
 

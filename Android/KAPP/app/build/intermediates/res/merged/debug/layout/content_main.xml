@@ -10,18 +10,27 @@
     tools:context="com.bitcakecodes.kapp.MainActivity"
     tools:showIn="@layout/app_bar_main"
     >
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary"
-        android:padding="6dp">
-        <android.support.v7.widget.SearchView
-            android:layout_width="match_parent"
+
+        android:padding="6dp"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/search"
+            android:layout_weight="4"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/white" />
+            />
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:onClick="searchDatabase"
+            />
 
 
-    </FrameLayout>
+    </LinearLayout>
 
     <ListView
 
