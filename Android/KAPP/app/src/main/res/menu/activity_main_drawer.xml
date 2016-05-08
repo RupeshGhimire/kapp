@@ -1,26 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_ku"
+    <item android:title="About Kathmandu University">
+        <menu>
+            <item
+                android:id="@+id/nav_ku"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Main Campus"
+                />
+            <item
+                android:id="@+id/nav_blocks"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="School of Medical Science" />
+            <item
+                android:id="@+id/nav_blocks_KUSOM"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="School of Management" />
+            <item
+                android:id="@+id/nav_blocks_KUSOA"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="School of Arts" />
+            <item
+                android:id="@+id/nav_blocks_KUSOL"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="School of Law" />
+        </menu>
+    </item>
+        <group>
+            <item
+                android:id="@+id/news"
+                android:title="News"/>
+            <item
+                android:id="@+id/nav_itPark"
 
-            android:title="About Kathmandu University"
-            />
-        <item
-            android:id="@+id/nav_blocks"
+                android:title="IT Park" />
+            <item
+                android:id="@+id/nav_us"
 
-            android:title="Blocks" />
-        <item
-            android:id="@+id/nav_itPark"
+                android:title="About Us" />
 
-            android:title="IT Park" />
-        <item
-            android:id="@+id/nav_us"
+        </group>
 
-            android:title="About Us" />
 
-    </group>
+
+
+
 
     <item android:title="Communicate">
         <menu>

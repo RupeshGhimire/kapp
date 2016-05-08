@@ -77,6 +77,7 @@
     <color name="dim_foreground_material_light">#ff323232</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
+    <color name="grey">#212121</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="hint_foreground_material_dark">@color/bright_foreground_disabled_material_dark</color>
@@ -524,11 +525,12 @@
     <string name="place_autocomplete_search_hint">Search</string>
     <string name="po">"P.O.Box - 6250"
         </string>
+    <string name="section_format">Hello World from section: %1$d</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="store_picture_message">"Allow Ad to store image in Picture gallery?"</string>
     <string name="store_picture_title">Save image</string>
     <string name="title_activity_about_us">about_us</string>
-    <string name="title_activity_main">KAPP (KU App)</string>
+    <string name="title_activity_main">KAPP</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_scrolling">KATHMANDU UNIVERSITY</string>
     <string name="vision">""To become a world class university devoted to bringing knowledge and Technology to the service of Mankind.""</string>

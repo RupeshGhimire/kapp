@@ -93,6 +93,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         key = new String[2];
         Intent intent = new Intent(context, ScrollingActivity.class);
         Bundle mBundle = new Bundle();
+
         key[0]="BlocksActivity";
         switch (position) {
             case 0:

@@ -1,32 +1,29 @@
 package com.bitcakecodes.kapp;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -35,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     String [] key;
     DatabaseAccess databaseAccess;
 
+    int content;
 
     private static int x=1;
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
@@ -43,7 +41,10 @@ public class MainActivity extends AppCompatActivity
     List<String> departNo;
     ArrayAdapter<String> mAdapter;
     ArrayAdapter<String> mAdapterNum;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
 
+
+    private ViewPager mViewPager;
 
 
     @Override
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_main);
 
+/*
         String[] data = {
                 "Main Square",
                 "Administration",
@@ -107,27 +109,20 @@ public class MainActivity extends AppCompatActivity
                 dispDepartmentInfo(position);
             }
         });
+        */
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                key = new String[2];
-                Bundle mBundle = new Bundle();
-                key[0]="MainActivity";
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
 
-                key[1]="MM";
-                Intent intent= new Intent(MainActivity.this , MapsActivity.class);
-                mBundle.putStringArray("data", key);
-                intent.putExtras(mBundle);
-                startActivity(intent);
-                finish();
-            }
-        });
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -137,6 +132,10 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -151,7 +150,9 @@ public class MainActivity extends AppCompatActivity
                 super.onBackPressed();
                 return;
             }
-            else { Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show(); }
+            else {
+
+                Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show(); }
 
             mBackPressed = System.currentTimeMillis();
         }
@@ -319,7 +320,7 @@ public void searchDatabase(View view){
 
         databaseAccess.close();
         if (x==0){
-            Snackbar.make(view, "Payaena Hai Arko Khoja sathi :P", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Not Found! Try Again!!", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
         else{
@@ -330,7 +331,7 @@ public void searchDatabase(View view){
                 listString[i]= s;
                 i++;
             }
-            Toast.makeText(MainActivity.this,listString[0], Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"Loading...", Toast.LENGTH_SHORT).show();
             displayMarker(listString);
         }
 
@@ -352,5 +353,60 @@ public void searchDatabase(View view){
         startActivity(intent);
         finish();
     }
+
+
+
+
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            // getItem is called to instantiate the fragment for the given page.
+            // Return a PlaceholderFragment (defined as a static inner class below).
+            switch (position){
+                case 0:
+                    return KUMain.newInstance(position + 1);
+                case 1:
+                    return KuSms.newInstance(position + 1);
+                case 2:
+                    return KUSom.newInstance(position + 1);
+                case 3:
+                    return KUSoa.newInstance(position + 1);
+                case 4:
+                    return KUSol.newInstance(position + 1);
+            }
+
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            // Show 4 total pages.
+            return 5;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "KU";
+                case 1:
+                    return "KUSMS";
+                case 2:
+                    return "KUSOM";
+                case 3:
+                    return "KUSOA";
+                case 4:
+                    return "KUSOL";
+            }
+            return null;
+        }
+    }
+
+
 
 }

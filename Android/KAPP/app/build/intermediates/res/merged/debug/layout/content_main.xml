@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,40 +8,58 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.bitcakecodes.kapp.MainActivity"
-    tools:showIn="@layout/app_bar_main"
+
+
     >
+
+    <android.support.v7.widget.RecyclerView
+        android:paddingTop="60dp"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <LinearLayout
+
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:background="@color/primary"
         android:padding="6dp"
         android:orientation="horizontal">
         <EditText
             android:id="@+id/search"
-            android:layout_weight="4"
+            android:textColor="@color/accent"
+            android:layout_weight="6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+
             />
         <Button
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:onClick="searchDatabase"
+            style="?android:attr/borderlessButtonStyle"
+            android:drawableLeft="@android:drawable/ic_menu_search"
+            android:shadowColor="@color/accent"
+            android:drawableTint="@color/accent"
+
             />
 
 
     </LinearLayout>
 
-    <ListView
 
-    android:id="@+id/list_view"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-        android:divider="@null"
-        android:dividerHeight="0dp"
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:tint="@color/white"
+        android:src="@android:drawable/ic_dialog_map"
         />
 
-
-
-
-</LinearLayout>
+</RelativeLayout>

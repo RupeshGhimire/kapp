@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
             android:layout_marginBottom="0dp"
-            android:textColor="@color/primary"
+
             android:textAllCaps="true"
             android:text="Top Destinations :"
             android:textStyle="bold"
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginBottom="@dimen/text_margin"
-            android:textColor="@color/primary"
+
             android:text="destinations"/>
 
         <View
@@ -103,7 +103,7 @@
             android:layout_marginTop="@dimen/text_margin"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginBottom="@dimen/text_margin"
-            android:textColor="@color/primary"
+
             android:text="More Info:  "
             android:textStyle="bold"/>
         <TextView
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/text_margin"
             android:layout_marginLeft="@dimen/text_margin"
-            android:textColor="@color/primary"
+
             android:text="description"/>
         <View
             android:layout_width="match_parent"

@@ -32,6 +32,7 @@ private String[] name;
         accessDatabase(a);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,7 +71,7 @@ private String[] name;
                 finish();
                 break;
             case "MapsActivity":
-                name[1]="0";
+                //name[1]="0";
                 name[0]="MainActivity";
                 Bundle mBundle = new Bundle();
                 Intent nextIntent = new Intent(ScrollingActivity.this, MapsActivity.class);

@@ -265,6 +265,7 @@ public class MapsActivity extends FragmentActivity implements
         String[] name = m.getStringArray("data");
         getNumbers(name);
     displayMarkers();
+        mMap.setOnInfoWindowClickListener(this);
 
     }
 
@@ -288,6 +289,8 @@ public class MapsActivity extends FragmentActivity implements
         //location = null;
         //this eliminates the problem of not requesting the location after resume
         setUpMapIfNeeded();
+        getNumbers(name);
+        displayMarkers();
        /*
         if(!mRequestingLocation){
             handleNewLocation(location);
@@ -1055,7 +1058,7 @@ public class MapsActivity extends FragmentActivity implements
 
 
 
-        mMap.setOnInfoWindowClickListener(this);
+
 
 
     }
