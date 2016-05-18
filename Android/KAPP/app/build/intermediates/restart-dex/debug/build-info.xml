@@ -4,38 +4,64 @@
     api-level="23"
     density="xxxhdpi"
     format="7"
-    timestamp="13244288325443" >
+    timestamp="18497131177037" >
 
     <task
         name="javac"
-        duration="394" />
+        duration="131" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="16" />
+        duration="6" />
     <task
         name="verifier"
         duration="0" />
 
     <artifact
-        location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex"
+        location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0/classes.dex"
         type="DEX" />
 
-    <build timestamp="12035099916486" >
+    <build timestamp="14839355634070" >
         <artifact
             location="/home/lognod/kapp/Android/KAPP/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="12304518033660" >
+    <build
+        timestamp="15061923542563"
+        verifier="R_CLASS_CHANGE" >
         <artifact
-            location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/resources-debug.ap_"
-            type="RESOURCES" />
-    </build>
-    <build timestamp="13244288325443" >
+            location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_1/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_7/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_6/classes.dex"
+            type="DEX" />
         <artifact
             location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
+            type="DEX" />
+    </build>
+    <build timestamp="18497131177037" >
+        <artifact
+            location="/home/lognod/kapp/Android/KAPP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0/classes.dex"
             type="DEX" />
     </build>
 

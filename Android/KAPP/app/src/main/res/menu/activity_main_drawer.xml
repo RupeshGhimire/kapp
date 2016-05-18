@@ -9,7 +9,7 @@
                 android:title="Main Campus"
                 />
             <item
-                android:id="@+id/nav_blocks"
+                android:id="@+id/nav_blocks_KUSMS"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="School of Medical Science" />
             <item

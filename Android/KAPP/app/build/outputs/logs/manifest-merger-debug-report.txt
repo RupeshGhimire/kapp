@@ -1,8 +1,8 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:2:1-62:12
+ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:2:1-58:12
 	package
-		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:3:5-36
+		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:3:5-33
 		INJECTED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml
 		INJECTED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml
 	android:versionName
@@ -18,7 +18,7 @@ ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:10:5-
 	android:name
 		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:10:22-76
 application
-ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:12:5-60:19
+ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:12:5-56:19
 MERGED from [com.android.support:appcompat-v7:23.3.0] /home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-vector-drawable:23.3.0] /home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-v4:23.3.0] /home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/AndroidManifest.xml:22:5-20
@@ -148,7 +148,7 @@ MERGED from [com.android.support:cardview-v7:23.3.0] /home/lognod/kapp/Android/K
 		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:14:9-43
 	android:theme
 		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:17:9-40
-activity#com.bitcakecodes.kapp.splash
+activity#com.kimbutech.kapp.splash
 ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:18:9-21:59
 	android:label
 		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:20:13-35
@@ -156,7 +156,7 @@ ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:18:9-
 		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:21:13-56
 	android:name
 		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:19:13-35
-activity#com.bitcakecodes.kapp.MainActivity
+activity#com.kimbutech.kapp.MainActivity
 ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:22:9-31:20
 	android:label
 		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:24:13-56
@@ -174,42 +174,34 @@ category#android.intent.category.LAUNCHER
 ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:29:17-77
 	android:name
 		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:29:27-74
-activity#com.bitcakecodes.kapp.BlocksActivity
-ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:32:9-35:59
-	android:label
-		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:34:13-56
-	android:theme
-		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:35:13-56
-	android:name
-		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:33:13-43
 meta-data#com.google.android.geo.API_KEY
-ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:45:9-47:55
+ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:41:9-43:55
 	android:value
-		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:47:13-52
+		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:43:13-52
 	android:name
-		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:46:13-58
-activity#com.bitcakecodes.kapp.MapsActivity
-ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:49:9-51:59
+		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:42:13-58
+activity#com.kimbutech.kapp.MapsActivity
+ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:45:9-47:59
 	android:label
+		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:47:13-56
+	android:name
+		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:46:13-41
+activity#com.kimbutech.kapp.ScrollingActivity
+ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:48:9-51:59
+	android:label
+		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:50:13-33
+	android:theme
 		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:51:13-56
 	android:name
-		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:50:13-41
-activity#com.bitcakecodes.kapp.ScrollingActivity
+		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:49:13-46
+activity#com.kimbutech.kapp.about_us
 ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:52:9-55:59
 	android:label
-		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:54:13-33
+		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:54:13-60
 	android:theme
 		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:55:13-56
 	android:name
-		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:53:13-46
-activity#com.bitcakecodes.kapp.about_us
-ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:56:9-59:59
-	android:label
-		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:58:13-60
-	android:theme
-		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:59:13-56
-	android:name
-		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:57:13-37
+		ADDED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml:53:13-37
 uses-sdk
 INJECTED from /home/lognod/kapp/Android/KAPP/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.3.0] /home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/AndroidManifest.xml:21:5-23:78

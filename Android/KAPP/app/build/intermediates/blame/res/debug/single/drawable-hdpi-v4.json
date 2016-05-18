@@ -388,12 +388,12 @@
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-hdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/cast_ic_notification_2.png",
-        "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/8.4.0/res/drawable-hdpi/cast_ic_notification_2.png"
-    },
-    {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_plusone_medium_off_client.png",
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/8.4.0/res/drawable-hdpi/ic_plusone_medium_off_client.png"
+    },
+    {
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/cast_ic_notification_2.png",
+        "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/8.4.0/res/drawable-hdpi/cast_ic_notification_2.png"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_cab_background_top_mtrl_alpha.9.png",

@@ -12,12 +12,12 @@
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/abc_alert_dialog_button_bar_material.xml"
     },
     {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/activity_maps.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/activity_maps.xml"
-    },
-    {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/activity_maps.xml",
+        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/activity_maps.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
@@ -26,10 +26,6 @@
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/design_navigation_menu_item.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_menu_item.xml"
-    },
-    {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/content_blocks.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/content_blocks.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/mr_media_route_controller_material_dialog_b.xml",
@@ -84,8 +80,16 @@
         "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/nav_header_main.xml"
     },
     {
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/name_card.xml",
+        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/name_card.xml"
+    },
+    {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/content_splash_screen.xml",
+        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/content_splash_screen.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
@@ -132,20 +136,12 @@
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/notification_template_part_time.xml"
     },
     {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/mr_media_route_list_item.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/layout/mr_media_route_list_item.xml"
-    },
-    {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/notification_media_action.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/design_navigation_item_separator.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_item_separator.xml"
-    },
-    {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/app_bar_blocks.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/app_bar_blocks.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar_include.xml",
@@ -176,12 +172,12 @@
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/abc_dialog_title_material.xml"
     },
     {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/design_layout_tab_text.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_layout_tab_text.xml"
-    },
-    {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/list_block.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/list_block.xml"
+    },
+    {
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/design_layout_tab_text.xml",
+        "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_layout_tab_text.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/mr_media_route_chooser_dialog.xml",
@@ -198,10 +194,6 @@
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/abc_screen_toolbar.xml"
-    },
-    {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/splash_screen.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/splash_screen.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",
@@ -236,16 +228,16 @@
         "source": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_item.xml"
     },
     {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/activity_block.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/activity_block.xml"
-    },
-    {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/fragment_main.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/fragment_main.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/content_about_us.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/content_about_us.xml"
+    },
+    {
+        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/activity_splash_screen.xml",
+        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/layout/activity_splash_screen.xml"
     },
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
