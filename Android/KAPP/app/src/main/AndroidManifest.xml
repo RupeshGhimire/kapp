@@ -17,17 +17,19 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".splash"
-            android:label="Splash"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="K-App"
+            android:theme="@style/SplashTheme.NoActionBar" >
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!--
@@ -47,12 +49,29 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".ScrollingActivity"
-            android:label="KAPP"
+            android:label="KU"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".about_us"
             android:label="@string/title_activity_about_us"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".calendar"
+            android:label="@string/title_activity_calendar"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SearchableActivity"
+            android:label="@string/title_activity_searchable"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchables"/>
+
+        </activity>
     </application>
 
 </manifest>

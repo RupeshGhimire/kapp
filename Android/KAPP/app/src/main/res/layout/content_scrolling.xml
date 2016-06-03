@@ -112,12 +112,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/text_margin"
             android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="@dimen/text_margin"
 
-            android:text="description"/>
+            android:text="@string/dummyDesctiption"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/accent"/>
+            android:background="@color/black_overlay"/>
 
     </LinearLayout>
 

@@ -4,6 +4,7 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="about">We all face the problem of navigation in organizations with large area. The solution is K-App. </string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
@@ -24,5 +25,12 @@
     <string name="title_activity_about_us">about_us</string>
     <string name="title_activity_splash_screen">splashScreen</string>
     <string name="title_activity_toremove">toremove</string>
+    <string name="dummyDesctiption"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae blandit massa. Pellentesque blandit risus in justo accumsan, eu volutpat risus mollis. Mauris venenatis, neque ut finibus congue, metus lectus vehicula dolor, at blandit quam arcu eu odio. Integer ut diam fermentum, dapibus lorem a, sagittis sapien. Cras nunc leo, dapibus eget sem vel, maximus elementum velit. Quisque placerat lectus sed mattis fringilla. Etiam vel finibus velit. Cras quis venenatis nulla. Nunc sit amet diam eget velit sollicitudin feugiat ut ac enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus ac arcu magna. Vivamus quis ante vitae ex laoreet mattis sed eget quam. Mauris vitae dui ipsum. Duis at elementum leo, id sagittis augue. Pellentesque eget aliquet metus.
+
+Pellentesque ullamcorper ultricies dictum. Donec dictum odio ut turpis commodo, at aliquam neque aliquam. In hac habitasse platea dictumst. Pellentesque at ex a orci egestas lacinia eget in tellus. Pellentesque a lorem a metus lacinia blandit in sit amet velit. Aenean auctor nibh dui, condimentum gravida diam pellentesque eu. Duis est turpis, euismod vel ligula quis, cursus tempor ex. In lectus neque, ultrices in facilisis ac, venenatis at nisl. Nunc ut elit ac mauris venenatis dignissim. Nulla suscipit dui sit amet accumsan hendrerit. Nam sed mauris nisl. Curabitur et sapien tellus. Nulla vulputate feugiat est quis pharetra.
+
+</string>
+    <string name="title_activity_calendar">KU Calendar</string>
+    <string name="title_activity_searchable">SearchableActivity</string>
 
 </resources>

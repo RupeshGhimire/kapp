@@ -1,6 +1,8 @@
 package com.kimbutech.kapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 /**
@@ -11,8 +13,19 @@ public class splash extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
-        Thread splashThread = new Thread(){
+        //setContentView(R.layout.activity_splash_screen);
+     final Intent intent = new Intent(this,MainActivity.class);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Do something after 100ms
+                startActivity(intent);
+                finish();
+            }
+        }, 400);
+
+               /* Thread splashThread = new Thread(){
             @Override
             public void run() {
                 try {
@@ -25,7 +38,7 @@ public class splash extends AppCompatActivity {
             }
         };
         splashThread.start();
-
+*/
 
     }
 }

@@ -1,14 +1,20 @@
 package com.kimbutech.kapp;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -17,6 +23,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,14 +36,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
-    String [] key;
+public class
+MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
+    String[] key;
     DatabaseAccess databaseAccess;
 
     int content;
 
-    private static int x=1;
+
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
     List<String> departName;
@@ -44,7 +52,7 @@ public class MainActivity extends AppCompatActivity
     ArrayAdapter<String> mAdapter;
     ArrayAdapter<String> mAdapterNum;
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
+    Location userLocation;
 
     private ViewPager mViewPager;
 
@@ -53,16 +61,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (x == 1) {
-            Intent startScreen = new Intent(this, splash.class);
-            startActivity(startScreen);
-            x=2;
-        }
 
 
         setContentView(R.layout.activity_main);
-
-
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -75,10 +76,10 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 key = new String[2];
                 Bundle mBundle = new Bundle();
-                key[0]="MainActivity";
+                key[0] = "MainActivity";
 
-                key[1]="MM";
-                Intent intent= new Intent(MainActivity.this, MapsActivity.class);
+                key[1] = "MM";
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 mBundle.putStringArray("data", key);
                 intent.putExtras(mBundle);
                 startActivity(intent);
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -114,16 +116,14 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
-            if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
-            {
+        } else {
+            if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
                 super.onBackPressed();
                 return;
-            }
-            else {
+            } else {
 
-                Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show(); }
+                Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show();
+            }
 
             mBackPressed = System.currentTimeMillis();
         }
@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
         return true;
     }
 
@@ -144,7 +145,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.about) {
+            Intent intent = new Intent(MainActivity.this, about_us.class);
+            startActivity(intent);
+            finish();
             return true;
         }
 
@@ -161,114 +165,76 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, "About Kathmandu University",
                     Toast.LENGTH_LONG).show();
 
-        }
-
-        else if(id == R.id.nav_blocks_KUSOA){
+        } else if (id == R.id.nav_blocks_KUSOA) {
             Toast.makeText(this, "About Kathmandu University",
                     Toast.LENGTH_LONG).show();
-        }
-        else if(id == R.id.nav_blocks_KUSOL){
+        } else if (id == R.id.nav_blocks_KUSOL) {
             Toast.makeText(this, "About Kathmandu University",
                     Toast.LENGTH_LONG).show();
-        }
-        else if(id == R.id.nav_blocks_KUSOM){
+        } else if (id == R.id.nav_blocks_KUSOM) {
             Toast.makeText(this, "About Kathmandu University",
                     Toast.LENGTH_LONG).show();
-        }
-        else if(id == R.id.nav_blocks_KUSMS){
+        } else if (id == R.id.nav_blocks_KUSMS) {
             Toast.makeText(this, "About Kathmandu University",
                     Toast.LENGTH_LONG).show();
-        }
-        else if (id == R.id.nav_itPark) {
+        } else if (id == R.id.calendar) {
+            Intent intent = new Intent(this, calendar.class);
+           startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_itPark) {
             Bundle mBundle = new Bundle();
             key = new String[3];
-            key[0]="MainActivity";
-            key[1]="35";
+            key[0] = "MainActivity";
+            key[1] = "35";
             Intent intent = new Intent(this, ScrollingActivity.class);
             mBundle.putStringArray("data", key);
             intent.putExtras(mBundle);
             startActivity(intent);
             finish();
 
-        }
-
-        else if (id == R.id.nav_us) {
+        } else if (id == R.id.nav_us) {
             Intent intent = new Intent(this, about_us.class);
             startActivity(intent);
             finish();
 
         }
 
-        else if (id == R.id.nav_share) {
-
-            // Create the text message with a string
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_SUBJECT, "I am in Computer Department");
-            sendIntent.setType("text/plain");
-
-            // Verify that the intent will resolve to an activity
-            if (sendIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(sendIntent);
-            }
-            else{
-                Toast.makeText(this, "Cannot open SMS app.", Toast.LENGTH_SHORT).show();
-            }
-
-
-
-        }
-        else if (id == R.id.nav_send) {
-
-
-            Intent sendIntent = new Intent(Intent.ACTION_SENDTO);
-            sendIntent.setData(Uri.parse("smsto:"));
-
-            sendIntent.putExtra("sms_body", "I am in computer department");
-
-            if (sendIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(sendIntent);
-            }
-            else{
-                Toast.makeText(this, "Cannot open SMS app.", Toast.LENGTH_SHORT).show();
-            }
-        }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    public void dispDepartmentInfo(int position){
+
+    public void dispDepartmentInfo(int position) {
 
         key = new String[3];
         Intent intent = new Intent(this, ScrollingActivity.class);
         Bundle mBundle = new Bundle();
-        key[0]="MainActivity";
+        key[0] = "MainActivity";
         //this is different than the original code because of the list view
         switch (position) {
             case 1:
 
-                key[1]="1";
+                key[1] = "1";
 
                 break;
             case 2:
 
-                key[1]="2";
+                key[1] = "2";
 
                 break;
             case 3:
 
-                key[1]="3";
+                key[1] = "3";
 
                 break;
             case 4:
 
-                key[1]="4";
+                key[1] = "4";
 
                 break;
             case 5:
 
-                key[1]="5";
+                key[1] = "5";
 
                 break;
 
@@ -285,46 +251,43 @@ public class MainActivity extends AppCompatActivity
         finish();
 
     }
-public void searchDatabase(View view){
-    EditText searchView = (EditText) findViewById(R.id.search);
-    String text = searchView.getText().toString();
-    
+
+    public void searchDatabase(View view) {
+        EditText searchView = (EditText) findViewById(R.id.search);
+        String text = searchView.getText().toString();
+
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         ArrayList<String> list = new ArrayList<String>();
 
-        String [] listString;
+        String[] listString;
         int x = databaseAccess.noofsearch(text);
         listString = new String[x];
 
 
         databaseAccess.close();
-        if (x==0){
+        if (x == 0) {
             Snackbar.make(view, "Not Found! Try Again!!", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
-        }
-        else{
+        } else {
             list = databaseAccess.searchrecord(text);
-            int i=0;
-            for (String s : list)
-            {
-                listString[i]= s;
+            int i = 0;
+            for (String s : list) {
+                listString[i] = s;
                 i++;
             }
-            Toast.makeText(MainActivity.this,"Loading...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Loading...", Toast.LENGTH_SHORT).show();
             displayMarker(listString);
         }
 
 
+    }
 
-
-}
-
-    public void displayMarker(String[] data){
-        String []name;
+    public void displayMarker(String[] data) {
+        String[] name;
         name = new String[3];
-        name[1]=data[0];
-        name[0]="MainActivity";
+        name[1] = data[0];
+        name[0] = "MainActivity";
         Intent intent = new Intent(MainActivity.this, MapsActivity.class);
         Bundle mBundle = new Bundle();
         mBundle.putStringArray("data", name);
@@ -334,7 +297,33 @@ public void searchDatabase(View view){
         finish();
     }
 
+    /*public Location getLocation() {
+        LocationManager mLocationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
 
+        boolean isGPSEnabled = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        boolean isNetworkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        if (!isGPSEnabled && !isNetworkEnabled) {
+            Toast.makeText(MainActivity.this, "Enable GPS or Network", Toast.LENGTH_SHORT).show();
+        } else {
+            if (isGPSEnabled) {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+
+                }
+
+            }
+            else if(isNetworkEnabled){
+
+            }
+        }
+        return userLocation;
+    }*/
 
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {

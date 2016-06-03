@@ -6,9 +6,5 @@
     {
         "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/menu/main.xml",
         "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/menu/main.xml"
-    },
-    {
-        "merged": "/home/lognod/kapp/Android/KAPP/app/build/intermediates/res/merged/debug/menu/menu_scrolling.xml",
-        "source": "/home/lognod/kapp/Android/KAPP/app/src/main/res/menu/menu_scrolling.xml"
     }
 ]

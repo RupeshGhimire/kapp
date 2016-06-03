@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/calendar"
+            android:title="Calendar"
+            android:icon="@android:drawable/ic_menu_agenda"/>
+        <item
+            android:id="@+id/nav_itPark"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="IT Park" />
+        <item
+            android:id="@+id/nav_us"
+
+            android:title="About"
+            android:icon="@android:drawable/ic_dialog_info"/>
+
+    </group>
 
     <item android:title="About Kathmandu University">
         <menu>
@@ -26,37 +42,11 @@
                 android:title="School of Law" />
         </menu>
     </item>
-        <group>
-            <item
-                android:id="@+id/news"
-                android:title="News"/>
-            <item
-                android:id="@+id/nav_itPark"
-
-                android:title="IT Park" />
-            <item
-                android:id="@+id/nav_us"
-
-                android:title="About Us" />
-
-        </group>
 
 
 
 
 
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share with Friends!!" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send SMS" />
-        </menu>
-    </item>
 
 </menu>

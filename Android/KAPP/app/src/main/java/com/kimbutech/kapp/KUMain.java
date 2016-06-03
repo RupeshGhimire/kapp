@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class KUMain extends Fragment {
     MainViewAdapter recyclerAdapter;
@@ -25,6 +26,7 @@ public class KUMain extends Fragment {
     private String[] departmentName;
     private String[] departmentNumber;
     private String[] departmentImage;
+    boolean controlsVisible=true;
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -52,6 +54,7 @@ public class KUMain extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         final View rootView = inflater.inflate(R.layout.content_main, container, false);
 
         RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
@@ -76,13 +79,13 @@ public class KUMain extends Fragment {
 
             Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
             TabLayout tabs = (TabLayout) getActivity().findViewById(R.id.tabs);
-            AppBarLayout appbar=(AppBarLayout)getActivity().findViewById(R.id.appBar);
+
 
 
             int initialPadding;
             int scrolledDistance=0;
             private static final int HIDE_THRESHOLD = 20;
-            boolean controlsVisible=true;
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -94,10 +97,7 @@ public class KUMain extends Fragment {
                         recyclerView.setPadding(0, 0, 0, 0);
 
                         searchView.animate().translationY(-searchView.getHeight() - 200).setInterpolator(new AccelerateInterpolator(2));
-                        //toolbar.animate().translationY(-toolbar.getHeight() - 200).setInterpolator(new AccelerateInterpolator(2));
-                        //toolbar.setAlpha(0.0f);
-                        toolbar.animate().alpha(0.0f);
-                        //tabs.animate().translationY(-tabs.getHeight()).setInterpolator(new AccelerateInterpolator(2));
+                        toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
                         fab.animate().translationY(fab.getHeight() + 100).setInterpolator(new AccelerateInterpolator(2));
 
 
@@ -106,13 +106,8 @@ public class KUMain extends Fragment {
                     } else if (scrolledDistance < -HIDE_THRESHOLD && !controlsVisible) {
                         recyclerView.setPadding(0, initialPadding, 0, 0);
                         searchView.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
-                       //toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
-                        //tabs.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
-                       toolbar.animate().alpha(1.0f);
-
+                        toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
                         fab.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
-
-
                         controlsVisible = true;
                         scrolledDistance = 0;
                     }
@@ -166,4 +161,6 @@ public class KUMain extends Fragment {
         databaseAccess.close();
 
     }
+
+
 }
