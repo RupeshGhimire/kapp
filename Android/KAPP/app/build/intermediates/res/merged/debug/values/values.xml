@@ -31,6 +31,8 @@
     <color name="background_floating_material_light">@android:color/white</color>
     <color name="background_material_dark">@color/material_grey_850</color>
     <color name="background_material_light">@color/material_grey_50</color>
+    <color name="black">#ff000000</color>
+    <color name="black_50">#88000000</color>
     <color name="black_overlay">#66000000</color>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
     <color name="bright_foreground_disabled_material_light">#80000000</color>
@@ -77,6 +79,8 @@
     <color name="dim_foreground_material_light">#ff323232</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
+    <color name="gray">#ff888888</color>
+    <color name="gray_50">#88888888</color>
     <color name="grey">#212121</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
@@ -113,6 +117,8 @@
     <color name="primary_text_disabled_material_light">#39000000</color>
     <color name="ripple_material_dark">#33ffffff</color>
     <color name="ripple_material_light">#1f000000</color>
+    <color name="search_field_bg">@color/white_ish</color>
+    <color name="search_layover_bg">@color/gray</color>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
@@ -135,6 +141,8 @@
     <color name="wallet_holo_blue_light">#ff33b5e5</color>
     <color name="wallet_link_text_light">#0000ee</color>
     <color name="white">#ffffff</color>
+    <color name="white_50">#88ffffff</color>
+    <color name="white_ish">#fffefefe</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="none" value="0"/><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr name="homeAsUpIndicator"/><attr format="dimension" name="itemPadding"/><attr format="boolean" name="hideOnContentScroll"/><attr format="dimension" name="contentInsetStart"/><attr format="dimension" name="contentInsetEnd"/><attr format="dimension" name="contentInsetLeft"/><attr format="dimension" name="contentInsetRight"/><attr format="dimension" name="elevation"/><attr format="reference" name="popupTheme"/></declare-styleable>
     <declare-styleable name="ActionBarLayout"><attr name="android:layout_gravity"/></declare-styleable>
     <declare-styleable name="ActionMenuItemView"><attr name="android:minWidth"/></declare-styleable>
@@ -174,6 +182,7 @@
     <declare-styleable name="ListPopupWindow"><attr name="android:dropDownVerticalOffset"/><attr name="android:dropDownHorizontalOffset"/></declare-styleable>
     <declare-styleable name="LoadingImageView"><attr format="enum" name="imageAspectRatioAdjust"><enum name="none" value="0"/><enum name="adjust_width" value="1"/><enum name="adjust_height" value="2"/></attr><attr format="float" name="imageAspectRatio"/><attr format="boolean" name="circleCrop"/></declare-styleable>
     <declare-styleable name="MapAttrs"><attr format="enum" name="mapType"><enum name="none" value="0"/><enum name="normal" value="1"/><enum name="satellite" value="2"/><enum name="terrain" value="3"/><enum name="hybrid" value="4"/></attr><attr format="float" name="cameraBearing"/><attr format="float" name="cameraTargetLat"/><attr format="float" name="cameraTargetLng"/><attr format="float" name="cameraTilt"/><attr format="float" name="cameraZoom"/><attr format="boolean" name="liteMode"/><attr format="boolean" name="uiCompass"/><attr format="boolean" name="uiRotateGestures"/><attr format="boolean" name="uiScrollGestures"/><attr format="boolean" name="uiTiltGestures"/><attr format="boolean" name="uiZoomControls"/><attr format="boolean" name="uiZoomGestures"/><attr format="boolean" name="useViewLifecycle"/><attr format="boolean" name="zOrderOnTop"/><attr format="boolean" name="uiMapToolbar"/><attr format="boolean" name="ambientEnabled"/></declare-styleable>
+    <declare-styleable name="MaterialSearchView"><attr format="integer" name="searchBackground"/><attr format="integer" name="searchVoiceIcon"/><attr format="integer" name="searchCloseIcon"/><attr format="integer" name="searchBackIcon"/><attr format="integer" name="searchSuggestionBackground"/><attr name="android:hint"/><attr name="android:textColor"/><attr name="android:textColorHint"/></declare-styleable>
     <declare-styleable name="MediaRouteButton"><attr format="reference" name="externalRouteEnabledDrawable"/><attr name="android:minWidth"/><attr name="android:minHeight"/></declare-styleable>
     <declare-styleable name="MenuGroup"><attr name="android:id"/><attr name="android:menuCategory"/><attr name="android:orderInCategory"/><attr name="android:checkableBehavior"/><attr name="android:visible"/><attr name="android:enabled"/></declare-styleable>
     <declare-styleable name="MenuItem"><attr name="android:id"/><attr name="android:menuCategory"/><attr name="android:orderInCategory"/><attr name="android:title"/><attr name="android:titleCondensed"/><attr name="android:icon"/><attr name="android:alphabeticShortcut"/><attr name="android:numericShortcut"/><attr name="android:checkable"/><attr name="android:checked"/><attr name="android:visible"/><attr name="android:enabled"/><attr name="android:onClick"/><attr name="showAsAction"><flag name="never" value="0"/><flag name="ifRoom" value="1"/><flag name="always" value="2"/><flag name="withText" value="4"/><flag name="collapseActionView" value="8"/></attr><attr format="reference" name="actionLayout"/><attr format="string" name="actionViewClass"/><attr format="string" name="actionProviderClass"/></declare-styleable>
@@ -329,6 +338,8 @@
     <dimen name="place_autocomplete_progress_horizontal_margin">16dp</dimen>
     <dimen name="place_autocomplete_progress_size">24dp</dimen>
     <dimen name="place_autocomplete_separator_start">72dp</dimen>
+    <dimen name="search_icon_padding">12dp</dimen>
+    <dimen name="search_view_text_padding">8dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <item name="ic_menu_camera" type="drawable">@android:drawable/ic_menu_camera</item>
     <item name="ic_menu_gallery" type="drawable">@android:drawable/ic_menu_gallery</item>
@@ -386,6 +397,9 @@
     <string name="cast_notification_connected_message">Connected to <ns1:g id="name">%1$s</ns1:g></string>
     <string name="cast_notification_connecting_message">Connecting to <ns1:g id="name">%1$s</ns1:g></string>
     <string name="cast_notification_disconnect">Disconnect</string>
+    <string name="cd_clear_button">Clear field</string>
+    <string name="cd_up_button">UP navigation button</string>
+    <string name="cd_voice_search">Voice search</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <string name="common_google_play_services_api_unavailable_text"><ns1:g id="app_name">%1$s</ns1:g> requires one or more Google Play services that are not currently available. Please contact the developer for assistance.</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Enable Google Play services</string>
@@ -434,6 +448,7 @@ Pellentesque ullamcorper ultricies dictum. Donec dictum odio ut turpis commodo, 
      AIzaSyDl7iyYGi0Uu6DilGjN5nFy5g46LeT8IFk
     </string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_prompt">Speak an item name or a number</string>
     <string name="location">Dhulikhel, Nepal</string>
     <string name="mr_media_route_button_content_description">Cast</string>
     <string name="mr_media_route_chooser_searching">Searching for devices\u2026</string>
@@ -452,6 +467,7 @@ Pellentesque ullamcorper ultricies dictum. Donec dictum odio ut turpis commodo, 
     <string name="place_autocomplete_search_hint">Search</string>
     <string name="po">"P.O.Box - 6250"
         </string>
+    <string name="search_hint">Search…</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="store_picture_message">"Allow Ad to store image in Picture gallery?"</string>
@@ -486,6 +502,8 @@ Pellentesque ullamcorper ultricies dictum. Donec dictum odio ut turpis commodo, 
 
         <item name="android:textColorPrimary">@android:color/primary_text_light</item>
         <item name="android:textColorSecondary">@android:color/secondary_text_light</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.NoActionBar">
@@ -1472,6 +1490,16 @@ Pellentesque ullamcorper ultricies dictum. Donec dictum odio ut turpis commodo, 
     </style>
     <style name="CardView.Light">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
+    </style>
+    <style name="MaterialSearchViewStyle">
+        <item name="searchBackground">@color/white_ish</item>
+        <item name="searchVoiceIcon">@drawable/ic_action_voice_search</item>
+        <item name="searchCloseIcon">@drawable/ic_action_navigation_close</item>
+        <item name="searchBackIcon">@drawable/ic_action_navigation_arrow_back</item>
+        <item name="searchSuggestionBackground">@color/search_layover_bg</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/gray_50</item>
+        <item name="android:hint">@string/search_hint</item>
     </style>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>

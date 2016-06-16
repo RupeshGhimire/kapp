@@ -86,6 +86,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/bundles" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dependency-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/br.com.mauker.materialsearchview/materialsearchview/1.1.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.4.0/jars" />
@@ -175,6 +176,7 @@
     <orderEntry type="library" exported="" name="play-services-cast-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-analytics-impl-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-gcm-9.0.0" level="project" />
+    <orderEntry type="library" exported="" name="materialsearchview-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-maps-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-tasks-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-database-connection-9.0.0" level="project" />

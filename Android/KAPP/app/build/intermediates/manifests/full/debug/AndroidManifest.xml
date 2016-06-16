@@ -51,6 +51,14 @@
             android:name="com.kimbutech.kapp.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchables" />
         </activity>
 
         <!--
@@ -80,19 +88,13 @@
             android:name="com.kimbutech.kapp.calendar"
             android:label="@string/title_activity_calendar"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.kimbutech.kapp.SearchableActivity"
-            android:label="@string/title_activity_searchable"
-            android:theme="@style/AppTheme.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchables" />
-        </activity>
+        <provider
+            android:name="br.com.mauker.materialsearchview.db.HistoryProvider"
+            android:authorities="com.kimbutech.kapp.searchhistorydatabase"
+            android:exported="false"
+            android:protectionLevel="signature"
+            android:syncable="true" />
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"

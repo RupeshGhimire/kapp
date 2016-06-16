@@ -10,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -25,15 +26,20 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.mauker.materialsearchview.MaterialSearchView;
 
 
 public class
@@ -55,7 +61,7 @@ MainActivity extends AppCompatActivity
     Location userLocation;
 
     private ViewPager mViewPager;
-
+    private MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +69,35 @@ MainActivity extends AppCompatActivity
 
 
 
+
         setContentView(R.layout.activity_main);
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        searchView = (MaterialSearchView) findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Do something when the suggestion list is clicked.
+                TextView tv = (TextView) view.findViewById(R.id.tv_str);
+
+                if (tv != null) {
+                    searchView.setQuery(tv.getText().toString(),false);
+                }
+            }
+        });
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
@@ -105,10 +135,32 @@ MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
     @Override
     protected void onResume() {
         super.onResume();
+        searchView.activityResumed();
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        //String[] arr = getResources().getStringArray(R.array.suggestion);
+        String[] arr1 = databaseAccess.depname();
+        String[] arr2 = {"KU","CE","MESS"};
+        searchView.addSuggestions(arr1);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == RESULT_OK) {
+            String matches = data.getStringExtra(RecognizerIntent.EXTRA_RESULTS);
+            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+            if (matches != null) {
+                List<String> searchWrd = databaseAccess.searchrecord(matches);
+                if (!TextUtils.isEmpty((CharSequence) searchWrd)) {
+                    searchView.setQuery((CharSequence) searchWrd, false);
+                }
+            }
+            return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -149,6 +201,7 @@ MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, about_us.class);
             startActivity(intent);
             finish();
+            searchView.openSearch();
             return true;
         }
 

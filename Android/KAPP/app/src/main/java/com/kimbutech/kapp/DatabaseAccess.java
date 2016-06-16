@@ -95,6 +95,21 @@ public class DatabaseAccess{
         } else
             return s;
     }
+    public String[] depname()
+    {
+        String[] dep = new String[35];
+        SQLiteDatabase database = openHelper.getWritableDatabase();
+        //database.execSQL("DROP TABLE IF EXISTS fts_table");
+        //ftstable();
+        Cursor c = database.rawQuery("SELECT * FROM kuinfo", null);
+        int i=0;
+        while(i<=c.getCount()&&c.moveToNext()) {
+            dep[i]=c.getString(2);
+            i++;
+        }
+        c.close();
+        return dep;
+    }
     public String[] getdata()
     {
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(null);

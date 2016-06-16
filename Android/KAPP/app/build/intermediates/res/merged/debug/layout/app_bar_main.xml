@@ -58,4 +58,9 @@
         android:tint="@color/white"
         android:src="@android:drawable/ic_dialog_map"
         />
+    <br.com.mauker.materialsearchview.MaterialSearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/MaterialSearchViewStyle"/>
 </android.support.design.widget.CoordinatorLayout>
